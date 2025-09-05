@@ -1,9 +1,11 @@
 using UnityEngine;
 using System.Collections;
+using System.Runtime.CompilerServices;
 public class PlayerManagement : MonoBehaviour
 {
     public GameObject player;
     public float speed;
+    public float jumpForce;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,11 +21,21 @@ public class PlayerManagement : MonoBehaviour
 
     public void Movement()
     {
-        var horizontalinput = Input.GetAxisRaw("Horizontal");
 
-        Vector3 movement = new Vector3(horizontalinput, 0, 0);
+        var horizontalInput = Input.GetAxisRaw("Horizontal");
+
+        Vector3 movement = new Vector3(horizontalInput, 0, 0);
         transform.Translate(movement *  speed * Time.deltaTime);
 
+
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+
+        if(Input.GetButtonDown("Jump"))
+        {
+            rb.AddForce(new Vector3(rb.linearVelocityY,jumpForce));
+        }
+
     }
+
 
 }
