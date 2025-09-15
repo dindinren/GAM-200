@@ -23,6 +23,7 @@ public class PackageMove : MonoBehaviour
                 package.transform.SetParent(packageParent.transform);
                 attachedPackages.Add(package);
             }
+
         }
     }
 
@@ -41,18 +42,30 @@ public class PackageMove : MonoBehaviour
         }
     }
 
+    public void Force() //adds force to the packages to make it so it wont fall off (but it looks janky)
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            foreach (GameObject package in attachedPackages)
+            {
+                Rigidbody2D rb = package.GetComponent<Rigidbody2D>();
+                if (Input.GetAxisRaw("Horizontal") >= 0 && package.transform.position.x >= 0) //move right and add the force 
+                {
+                    rb.AddForceX(155, ForceMode2D.Force);
+                }
+                if (Input.GetAxisRaw("Horizontal") <= 0 && package.transform.position.x <= 0)
+                {
+                    rb.AddForceX(-155, ForceMode2D.Force);
+                }
+            }
+        }
+    }
+
     // Optional: Clean up destroyed packages from the list
     private void Update()
     {
         attachedPackages.RemoveAll(package => package == null);
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            foreach(GameObject package in attachedPackages)
-            {
-                Rigidbody2D rb  = package.GetComponent<Rigidbody2D>();
-                rb.AddForceX(100, ForceMode2D.Force);
-            }
-        }
+
     }
 }
 
