@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8299905082795304769}
   - component: {fileID: 5740169880151786765}
   - component: {fileID: 7674402164302382373}
-  - component: {fileID: 7348242139372535103}
   m_Layer: 0
   m_Name: Package
   m_TagString: Package
@@ -115,7 +114,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 0
+  m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!114 &5740169880151786765
@@ -176,16 +175,3 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7348242139372535103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4311261822460233146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d22e6e04d2292b4ca1c5744a54dd871, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  packageParent: {fileID: 0}

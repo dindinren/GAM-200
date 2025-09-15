@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PackageManager : MonoBehaviour
@@ -22,7 +23,7 @@ public class PackageManager : MonoBehaviour
         Vector3 mousePoint = Input.mousePosition;
         mousePoint.z = zCoord;
 
-        offset = transform.position - Camera.main.ScreenToWorldPoint(mousePoint);
+        offset =  transform.position - Camera.main.ScreenToWorldPoint(mousePoint);
         isDragging = true;
     }
 

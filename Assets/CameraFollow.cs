@@ -3,8 +3,8 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     public float FollowSpeed = 2f;
-    public float yOffset = 1f;
-    public float xOffset = 1f;
+    public float yOffset;
+    public float xOffset;
     public Transform target;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

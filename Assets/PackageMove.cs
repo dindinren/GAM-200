@@ -1,40 +1,60 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class PackageMove : MonoBehaviour
 {
     public GameObject packageParent;
     private List<GameObject> attachedPackages = new List<GameObject>();
+    // Track if we're in a valid state to modify parent relationships
+    private bool canModifyParents = true;
+
 
     private void Awake()
     {
-        packageParent = GameObject.FindGameObjectWithTag("Paddle");
+        // Ensure we have a package parent reference
+        if (packageParent == null)
+        {
+            Debug.LogWarning("PackageParent is not assigned in the inspector. Using this GameObject as parent.");
+            packageParent = gameObject;
+        }
+
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnEnable()
     {
+        // Only allow parent modifications in play mode
+        canModifyParents = Application.isPlaying;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!canModifyParents) return;
+
+        GameObject package = collision.gameObject;
+
         if (collision.transform.CompareTag("Package") && packageParent != null)
         {
-            GameObject package = collision.gameObject;
-
-            // Check if this package is not already attached
-            if (!attachedPackages.Contains(package))
+            // Check if this package is not already attached and is valid
+            if (!attachedPackages.Contains(package) && package != null)
             {
                 package.transform.SetParent(packageParent.transform);
                 attachedPackages.Add(package);
             }
-
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+
+
+    private void OnTriggerExit2D(Collider2D collision)
     {
+        if (!canModifyParents) return;
+
         if (collision.transform.CompareTag("Package"))
         {
             GameObject package = collision.gameObject;
 
-            // Check if this package is in our list
-            if (attachedPackages.Contains(package))
+            // Check if this package is in our list and is valid
+            if (attachedPackages.Contains(package) && package != null)
             {
                 package.transform.SetParent(null);
                 attachedPackages.Remove(package);
@@ -42,31 +62,38 @@ public class PackageMove : MonoBehaviour
         }
     }
 
-    public void Force() //adds force to the packages to make it so it wont fall off (but it looks janky)
+    // Clean up destroyed packages from the list
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (!canModifyParents) return;
+
+
+        attachedPackages.RemoveAll(package => package == null);
+
+    }
+
+    // This is called when the component is being destroyed
+    private void OnDestroy()
+    {
+        // Prevent any further parent modifications
+        canModifyParents = false;
+
+        // Safely clear the list without modifying parents
+        for (int i = attachedPackages.Count - 1; i >= 0; i--)
         {
-            foreach (GameObject package in attachedPackages)
+            var package = attachedPackages[i];
+            if (package != null)
             {
-                Rigidbody2D rb = package.GetComponent<Rigidbody2D>();
-                if (Input.GetAxisRaw("Horizontal") >= 0 && package.transform.position.x >= 0) //move right and add the force 
-                {
-                    rb.AddForceX(155, ForceMode2D.Force);
-                }
-                if (Input.GetAxisRaw("Horizontal") <= 0 && package.transform.position.x <= 0)
-                {
-                    rb.AddForceX(-155, ForceMode2D.Force);
-                }
+                // Don't modify parent during destruction, just remove from list
+                attachedPackages.RemoveAt(i);
             }
         }
     }
 
-    // Optional: Clean up destroyed packages from the list
-    private void Update()
+    // Additional safety: Called when the application is quitting
+    private void OnApplicationQuit()
     {
-        attachedPackages.RemoveAll(package => package == null);
-
+        canModifyParents = false;
+        attachedPackages.Clear();
     }
 }
-
-

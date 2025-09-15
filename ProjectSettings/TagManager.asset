@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Package
   - Paddle
+  - Ground
   layers:
   - Default
   - TransparentFX

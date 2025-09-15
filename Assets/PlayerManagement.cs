@@ -6,10 +6,13 @@ public class PlayerManagement : MonoBehaviour
     public GameObject player;
     public float speed;
     public float jumpForce;
-    bool touchingFloor;
+    public bool touchingFloor;
+
+    public GameObject packageTriggerArea; 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        packageTriggerArea.SetActive(true);
     }
 
     // Update is called once per frame
@@ -33,6 +36,7 @@ public class PlayerManagement : MonoBehaviour
         {
             rb.AddForce(new Vector3(rb.linearVelocityY,jumpForce));
             touchingFloor = false;
+            packageTriggerArea.SetActive(false);
         }
     }
 
@@ -41,6 +45,7 @@ public class PlayerManagement : MonoBehaviour
         if(collision.collider.gameObject.tag == "Ground")
         {
             touchingFloor = true;
+            packageTriggerArea.SetActive(true);
         }
     }
 
