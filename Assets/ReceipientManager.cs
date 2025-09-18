@@ -22,6 +22,9 @@ public class ReceipientManager : MonoBehaviour
         {
             playerManagement.SetMoneySatus(20); 
             Destroy(package);
+
+            //play sound
+            SoundManager.PlaySound(SoundType.DELIVERYCOMPLETE);
         }
 
     }

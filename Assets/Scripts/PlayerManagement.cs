@@ -14,6 +14,9 @@ public class PlayerManagement : MonoBehaviour
     void Start()
     {
         packageTriggerArea.SetActive(true);
+
+        ///temp placement of music
+        SoundManager.PlayBGM(BGM.MENU);
     }
 
     // Update is called once per frame
@@ -45,11 +48,15 @@ public class PlayerManagement : MonoBehaviour
 
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
+        ///JUMP
         if(Input.GetKeyDown(KeyCode.Space) && touchingFloor == true)
         {
             rb.AddForce(new Vector3(rb.linearVelocityY,jumpForce));
             touchingFloor = false;
             packageTriggerArea.SetActive(false);
+
+            //play jump SFX
+            SoundManager.PlaySound(SoundType.JUMP);
         }
     }
 
