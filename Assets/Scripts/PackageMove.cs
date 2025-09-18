@@ -5,9 +5,11 @@ public class PackageMove : MonoBehaviour
 {
     public GameObject packageParent;
     private List<GameObject> attachedPackages = new List<GameObject>();
+
+    public GameObject receipient; //temp  
+    
     // Track if we're in a valid state to modify parent relationships
     private bool canModifyParents = true;
-
 
     private void Awake()
     {
@@ -20,6 +22,10 @@ public class PackageMove : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        receipient.SetActive(false);
+    }
     private void OnEnable()
     {
         // Only allow parent modifications in play mode
@@ -40,10 +46,18 @@ public class PackageMove : MonoBehaviour
                 package.transform.SetParent(packageParent.transform);
                 attachedPackages.Add(package);
             }
+
+            //allow player to talk to the receipient
+            receipient.SetActive(true);
+
         }
     }
 
-
+    public List<GameObject> GetAttachedPackagesList()
+    {
+        return attachedPackages;
+    }
+    
 
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -58,7 +72,9 @@ public class PackageMove : MonoBehaviour
             {
                 package.transform.SetParent(null);
                 attachedPackages.Remove(package);
+
             }
+
         }
     }
 
@@ -66,7 +82,6 @@ public class PackageMove : MonoBehaviour
     private void Update()
     {
         if (!canModifyParents) return;
-
 
         attachedPackages.RemoveAll(package => package == null);
 

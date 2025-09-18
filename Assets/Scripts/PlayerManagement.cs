@@ -7,6 +7,7 @@ public class PlayerManagement : MonoBehaviour
     public float speed;
     public float jumpForce;
     public bool touchingFloor;
+    public int money;
 
     public GameObject packageTriggerArea; 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -21,6 +22,13 @@ public class PlayerManagement : MonoBehaviour
         Movement();
     }
 
+    public int SetMoneySatus(int addMoney)
+    {
+        money+= addMoney;
+        Debug.Log($"Player now has: {money}");
+
+        return money;
+    }
 
     public void Movement()
     {
