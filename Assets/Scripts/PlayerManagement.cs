@@ -30,6 +30,11 @@ public class PlayerManagement : MonoBehaviour
         return money;
     }
 
+    public int GetMoneySatus()
+    {
+        return money;
+    }
+
     public void Movement()
     {
         var horizontalInput = Input.GetAxisRaw("Horizontal");

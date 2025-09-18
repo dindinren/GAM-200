@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 public class PackageMove : MonoBehaviour
 {
     public GameObject packageParent;
@@ -45,6 +45,10 @@ public class PackageMove : MonoBehaviour
             {
                 package.transform.SetParent(packageParent.transform);
                 attachedPackages.Add(package);
+
+                //set the pacakge to ignore raycast
+                package.layer = LayerMask.NameToLayer("Ignore Raycast");
+
             }
 
             //allow player to talk to the receipient
@@ -52,6 +56,10 @@ public class PackageMove : MonoBehaviour
 
         }
     }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+
+    //}
 
     public List<GameObject> GetAttachedPackagesList()
     {
@@ -72,11 +80,12 @@ public class PackageMove : MonoBehaviour
             {
                 package.transform.SetParent(null);
                 attachedPackages.Remove(package);
-
             }
 
         }
     }
+
+    
 
     // Clean up destroyed packages from the list
     private void Update()
