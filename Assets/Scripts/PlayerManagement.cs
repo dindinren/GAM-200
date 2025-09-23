@@ -7,12 +7,16 @@ public class PlayerManagement : MonoBehaviour
     public float speed;
     public float jumpForce;
     public bool touchingFloor;
+    public int money;
 
     public GameObject packageTriggerArea; 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         packageTriggerArea.SetActive(true);
+
+        ///temp placement of music
+        SoundManager.PlayBGM(BGM.MENU);
     }
 
     // Update is called once per frame
@@ -21,6 +25,18 @@ public class PlayerManagement : MonoBehaviour
         Movement();
     }
 
+    public int SetMoneySatus(int addMoney)
+    {
+        money+= addMoney;
+        Debug.Log($"Player now has: {money}");
+
+        return money;
+    }
+
+    public int GetMoneySatus()
+    {
+        return money;
+    }
 
     public void Movement()
     {
@@ -32,11 +48,15 @@ public class PlayerManagement : MonoBehaviour
 
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
+        ///JUMP
         if(Input.GetKeyDown(KeyCode.Space) && touchingFloor == true)
         {
             rb.AddForce(new Vector3(rb.linearVelocityY,jumpForce));
             touchingFloor = false;
             packageTriggerArea.SetActive(false);
+
+            //play jump SFX
+            SoundManager.PlaySound(SoundType.JUMP);
         }
     }
 

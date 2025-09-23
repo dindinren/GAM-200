@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.61, z: 0}
-  m_LocalScale: {x: 3.94, y: 2, z: 1}
+  m_LocalScale: {x: 3.65, y: 2.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3206186817174712023}
@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   packageParent: {fileID: 6175155436132423538}
+  receipient: {fileID: 0}
 --- !u!1 &6175155436132423538
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +311,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6618366402476583891}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
@@ -417,6 +418,7 @@ MonoBehaviour:
   speed: 7
   jumpForce: 600
   touchingFloor: 0
+  money: 0
   packageTriggerArea: {fileID: 3153997011824873872}
 --- !u!61 &1539929394677624856
 BoxCollider2D:

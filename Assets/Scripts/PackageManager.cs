@@ -31,4 +31,13 @@ public class PackageManager : MonoBehaviour
     {
         isDragging = false;
     }
+
+    //if package hits the floor, change layer to default
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            this.gameObject.layer = LayerMask.NameToLayer("Default");
+        }
+    }
 }
