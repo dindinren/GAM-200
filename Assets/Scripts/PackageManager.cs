@@ -39,5 +39,10 @@ public class PackageManager : MonoBehaviour
         {
             this.gameObject.layer = LayerMask.NameToLayer("Default");
         }
+
+        //if (collision.gameObject.CompareTag("Paddle"))
+        //{
+        //    this.GetComponent<Rigidbody2D>().simulated = false;
+        //}
     }
 }

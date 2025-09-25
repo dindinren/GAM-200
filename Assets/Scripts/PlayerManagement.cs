@@ -40,19 +40,33 @@ public class PlayerManagement : MonoBehaviour
 
     public void Movement()
     {
-        var horizontalInput = Input.GetAxisRaw("Horizontal");
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        SpriteRenderer spriteFlip = player.GetComponent<SpriteRenderer>();
 
         Vector3 movement = new Vector3(horizontalInput, 0, 0);
         transform.Translate(movement *  speed * Time.deltaTime);
 
+        ///flip the sprite
+        if(horizontalInput < 0)
+        {
+            spriteFlip.flipX = true;
+        }
+        else
+        {
+            spriteFlip.flipX= false;
+        }
 
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
         ///JUMP
         if(Input.GetKeyDown(KeyCode.Space) && touchingFloor == true)
         {
             rb.AddForce(new Vector3(rb.linearVelocityY,jumpForce));
+
             touchingFloor = false;
+
+            ///Add coroutine to delay turning off 
+            //StartCoroutine(DelayTriggerAreaOff());
             packageTriggerArea.SetActive(false);
 
             //play jump SFX
@@ -60,6 +74,11 @@ public class PlayerManagement : MonoBehaviour
         }
     }
 
+    private IEnumerator DelayTriggerAreaOff()
+    {
+        yield return new WaitForSeconds(0.2f);
+        packageTriggerArea.SetActive(false);
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.collider.gameObject.tag == "Ground")
