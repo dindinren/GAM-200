@@ -36,7 +36,10 @@ public class PackageMove : MonoBehaviour
 
     private void Start()
     {
-        receipient.SetActive(false);
+        if (receipient)
+        {
+            receipient.SetActive(false);
+        }
     }
     private void OnEnable()
     {
@@ -70,8 +73,10 @@ public class PackageMove : MonoBehaviour
             }
 
             //allow player to talk to the receipient
-            receipient.SetActive(true);
-
+            if (receipient)
+            {
+                receipient.SetActive(true);
+            }
         }
     }
 
