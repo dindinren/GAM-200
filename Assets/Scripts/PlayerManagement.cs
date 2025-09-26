@@ -28,6 +28,7 @@ public class PlayerManagement : MonoBehaviour
     public int SetMoneySatus(int addMoney)
     {
         money+= addMoney;
+
         Debug.Log($"Player now has: {money}");
 
         return money;

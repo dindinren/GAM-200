@@ -9,6 +9,13 @@ public class ReceipientManager : MonoBehaviour
     public PlayerManagement playerManagement; //get from player
     public PackageMove packMov; //get from the player's trigger area
 
+    SpawnManager spawnManager;
+    GameObject prefab;
+
+    private void Awake()
+    {
+        spawnManager = GameObject.Find("Canvas").GetComponent<SpawnManager>();
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,7 +27,11 @@ public class ReceipientManager : MonoBehaviour
         GameObject package = GameObject.FindGameObjectWithTag("Package");
         if (packMov.GetAttachedPackagesList().Contains(package))
         {
-            playerManagement.SetMoneySatus(20); 
+            prefab = spawnManager.GetPackageClone();
+            int packMan = prefab.GetComponent<PackageManager>().GetPackageValue();
+
+            playerManagement.SetMoneySatus(packMan); 
+
             Destroy(package);
 
             //play sound
