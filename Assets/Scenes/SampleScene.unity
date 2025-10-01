@@ -836,8 +836,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FollowSpeed: 3
-  yOffset: 2.25
-  xOffset: 2.25
+  yOffset: 3.35
+  xOffset: 0.55
   target: {fileID: 6721788482385335007}
 --- !u!1 &614446155
 GameObject:
@@ -900,7 +900,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 38789bc95566bb548b1af2849ce30df3, type: 3}
+  m_Sprite: {fileID: -1063744725519743736, guid: dd40e8b89c6f1ae4a83ff8e43c6eaf6d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -921,7 +921,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5.1, y: 5.1, z: 5.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -1811,6 +1811,14 @@ PrefabInstance:
     - target: {fileID: 3153997011824873872, guid: d1e771ff8b21b4d479e52beeda644ab2, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3206186817174712023, guid: d1e771ff8b21b4d479e52beeda644ab2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3206186817174712023, guid: d1e771ff8b21b4d479e52beeda644ab2, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3206186817174712023, guid: d1e771ff8b21b4d479e52beeda644ab2, type: 3}
       propertyPath: m_LocalPosition.x
