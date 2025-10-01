@@ -104,7 +104,6 @@ public class TempTutorial : MonoBehaviour
         closeButton.gameObject.SetActive(false);
         nextButton.gameObject.SetActive(false);
 
-
     }
 
     // Update is called once per frame

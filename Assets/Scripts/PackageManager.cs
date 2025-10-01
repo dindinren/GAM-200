@@ -10,15 +10,24 @@ public class PackageManager : MonoBehaviour
     int packageHP = 2;
     int packageValue = 10; //prob need to change when using json
 
-    SpawnManager spawnManager;
+    //SpawnManager spawnManager;
     SpriteRenderer spriteRenderer;
+
+    ConveyerBelt conveyer;
+    GameObject belt;
 
     private void Awake()
     {
-        spawnManager = GameObject.Find("Canvas").GetComponent<SpawnManager>();
+        belt = GameObject.FindGameObjectWithTag("Belt");
+        //spawnManager = GameObject.Find("Canvas").GetComponent<SpawnManager>();
+        conveyer = belt.GetComponent<ConveyerBelt>();
         spriteRenderer = GetComponent<SpriteRenderer>(); // Get this package's renderer
     }
-        void Update()
+
+    private void Start()
+    {
+    }
+    void Update()
     {
         if (isDragging)
         {
@@ -45,8 +54,8 @@ public class PackageManager : MonoBehaviour
 
     void PackageHPColor()
     {
-        var spriteRenderer = spawnManager.GetPackageClone().GetComponent<SpriteRenderer>();
-
+        //var spriteRenderer = spawnManager.GetPackageClone().GetComponent<SpriteRenderer>();
+        var spriteRenderer = conveyer.GetPackageCloneCB().GetComponent<SpriteRenderer>();
         switch (packageHP)
         {
             default:

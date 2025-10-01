@@ -7,6 +7,10 @@ public class CameraFollow : MonoBehaviour
     public float xOffset;
     public Transform target;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private void Awake()
+    {
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+    }
     void Start()
     {
     }

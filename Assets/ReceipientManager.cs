@@ -9,12 +9,18 @@ public class ReceipientManager : MonoBehaviour
     public PlayerManagement playerManagement; //get from player
     public PackageMove packMov; //get from the player's trigger area
 
-    SpawnManager spawnManager;
+    //SpawnManager spawnManager;
+    ConveyerBelt conveyer;
     GameObject prefab;
-
+    GameObject belt;
     private void Awake()
     {
-        spawnManager = GameObject.Find("Canvas").GetComponent<SpawnManager>();
+        playerManagement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManagement>();
+        packMov = GameObject.FindGameObjectWithTag("Paddle").GetComponentInChildren<PackageMove>();
+        belt = GameObject.FindGameObjectWithTag("Belt");
+        conveyer = belt.GetComponent<ConveyerBelt>();
+        belt.SetActive(false);
+        //spawnManager = GameObject.Find("Canvas").GetComponent<SpawnManager>();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,24 +32,19 @@ public class ReceipientManager : MonoBehaviour
     {
         GameObject package = GameObject.FindGameObjectWithTag("Package");
         if (packMov.GetAttachedPackagesList().Contains(package))
-        {
-            prefab = spawnManager.GetPackageClone();
-            int packMan = prefab.GetComponent<PackageManager>().GetPackageValue();
 
-            playerManagement.SetMoneySatus(packMan); 
+        prefab = conveyer.GetPackageCloneCB();
+        int packMan = prefab.GetComponent<PackageManager>().GetPackageValue();
 
-            Destroy(package);
+        playerManagement.SetMoneySatus(packMan);
 
-            //play sound
-            SoundManager.PlaySound(SoundType.DELIVERYCOMPLETE);
-        }
+        Destroy(package);
 
-    }
+        //play sound
+        SoundManager.PlaySound(SoundType.DELIVERYCOMPLETE);
 
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
+
+

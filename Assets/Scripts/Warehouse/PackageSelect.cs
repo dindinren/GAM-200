@@ -1,14 +1,16 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PackageSelect : MonoBehaviour
 {
-    int selectedTotal;
+    int selectedTotal=0;
     public GameObject cockBlock;
     public GameObject confirm;
     Toggle c;
     public bool[] selected;
 
+    public Canvas canvas;
     public void selecMe(Toggle me)
     {
         if (me.isOn)
@@ -22,6 +24,10 @@ public class PackageSelect : MonoBehaviour
         }
         c = me;
 
+    }
+    public int GetSelectedTotal()
+    {
+        return selectedTotal;
     }
     public void updateSelection(int toggleNo)
     {
@@ -39,5 +45,12 @@ public class PackageSelect : MonoBehaviour
             cockBlock.SetActive(true);
             confirm.SetActive(false);
         }
+    }
+
+    public void GoNextScreen()
+    {
+        SceneManager.LoadScene("Stack");
+        DontDestroyOnLoad(canvas);
+
     }
 }
