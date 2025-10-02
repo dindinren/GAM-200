@@ -1,5 +1,7 @@
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 public class ConveyerBelt : MonoBehaviour
 {
     public int BoxesToSpawn;
@@ -8,6 +10,7 @@ public class ConveyerBelt : MonoBehaviour
     public GameObject RealBox;
 
     GameObject package;
+    //private List<GameObject> packageList;
     PackageSelect packageSelect;
 
     private bool isSpawning = false; // track if coroutine is running
@@ -52,6 +55,7 @@ public class ConveyerBelt : MonoBehaviour
 
         // Spawn the box
         package = Instantiate(RealBox, new Vector2(3.82093f, 3.275727f), Quaternion.identity);
+        //packageList.Add(package);
         SpawnedBoxes++;
 
         isSpawning = false;

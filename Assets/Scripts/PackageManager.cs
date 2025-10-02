@@ -18,9 +18,9 @@ public class PackageManager : MonoBehaviour
 
     private void Awake()
     {
-        belt = GameObject.FindGameObjectWithTag("Belt");
+        //belt = GameObject.FindGameObjectWithTag("Belt");
         //spawnManager = GameObject.Find("Canvas").GetComponent<SpawnManager>();
-        conveyer = belt.GetComponent<ConveyerBelt>();
+        // = belt.GetComponent<ConveyerBelt>();
         spriteRenderer = GetComponent<SpriteRenderer>(); // Get this package's renderer
     }
 

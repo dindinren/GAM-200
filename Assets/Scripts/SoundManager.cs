@@ -43,8 +43,8 @@ public class SoundManager : MonoBehaviour
     {
         //for audio
         AudioClip[] clips = instance.soundList[(int)sound].Sounds;
-        AudioClip randomClip = clips[UnityEngine.Random.Range(0,clips.Length)];
-        instance.audioSource.PlayOneShot(randomClip,volume);
+        AudioClip randomClip = clips[UnityEngine.Random.Range(0, clips.Length)];
+        instance.audioSource.PlayOneShot(randomClip, volume);
     }
 
     public static void PlayBGM(BGM bgm, float volume = 1)
@@ -62,22 +62,22 @@ public class SoundManager : MonoBehaviour
     private void OnEnable()
     {
         //setting names for soundList from the struc list
-        string[] names = Enum.GetNames(typeof(SoundType)); 
+        string[] names = Enum.GetNames(typeof(SoundType));
         Array.Resize(ref soundList, names.Length);
-        for(int i = 0; i < soundList.Length; i++)
+        for (int i = 0; i < soundList.Length; i++)
         {
             soundList[i].name = names[i];
         }
         //setting names for BGM
         string[] names2 = Enum.GetNames(typeof(BGM));
         Array.Resize(ref bgmLists, names2.Length);
-        for (int i= 0; i< bgmLists.Length; i++)
+        for (int i = 0; i < bgmLists.Length; i++)
         {
             bgmLists[i].name = names2[i];
         }
     }
-}
 #endif
+}
 
 [Serializable]
 public struct SoundList
@@ -85,7 +85,7 @@ public struct SoundList
     public AudioClip[] Sounds { get => sounds; }
     [SerializeField] public string name;
     [SerializeField] private AudioClip[] sounds;
-    
+
 }
 [Serializable]
 public struct BGMList
