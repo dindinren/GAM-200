@@ -524,6 +524,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clipboard: {fileID: 1477979710}
   proceedbutton: {fileID: 1626554249}
+  spawnManager: {fileID: 1477979714}
 --- !u!1 &429423883
 GameObject:
   m_ObjectHideFlags: 0
@@ -2300,13 +2301,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fad50287aa071b4b904af1e464638c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clipboard: {fileID: 1477979710}
   proceedButton: {fileID: 1626554250}
   selection: {fileID: 86105380}
+  packageSpawnPoint: {fileID: 1965969209}
+  name: {fileID: 554845783}
+  reward: {fileID: 1268456072}
+  packagesPicked: 0
   packages:
   - {fileID: 11400000, guid: 657a1de8e5025d4459e8acb9b4f847f7, type: 2}
   - {fileID: 11400000, guid: 876bca3ff57c6a543af7f9d1182829a4, type: 2}
-  name: {fileID: 554845783}
-  reward: {fileID: 1268456072}
 --- !u!1001 &1576925930
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2560,7 +2564,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1626554251}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1477979714}
+        m_TargetAssemblyTypeName: WarehouseSpawnManager, Assembly-CSharp
+        m_MethodName: FinishButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1626554251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2987,7 +3003,7 @@ GameObject:
   m_Layer: 0
   m_Name: PackageSpawn
   m_TagString: Untagged
-  m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -3000,7 +3016,7 @@ Transform:
   m_GameObject: {fileID: 1965969208}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.4, y: 1.95, z: -0.018900052}
+  m_LocalPosition: {x: 5.99, y: -2.51, z: -0.018900052}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -8,23 +8,26 @@ using static UnityEngine.Rendering.ReloadAttribute;
 public class WarehouseSpawnManager : MonoBehaviour
 {
     public GameObject clipboard;
+    public GameObject player;
+
     public Button proceedButton;
 
     public Toggle selection;
     private List<int> toSpawnPackages = new List<int>();
     private HashSet<int> selectedPackageIDs = new HashSet<int>();
 
+
     public Transform packageSpawnPoint;
+    int index = 0;
+    public bool packagesPicked;
+    //int requiredNumber = 2;
 
-    public List<PackageData> packages;
-
+    [Header("DISPLAY DATA")]
     public TextMeshProUGUI name;
     public TextMeshProUGUI reward;
 
-    int index = 0;
-
-    public bool packagesPicked;
-    //int requiredNumber = 2;
+    [Header("PACKAGES DATA")]
+    public List<PackageData> packages;
 
     void Awake()
     {
@@ -103,15 +106,56 @@ public class WarehouseSpawnManager : MonoBehaviour
     public void FinishButton()
     {
         clipboard.SetActive(false);
-        //Start spawning the packages
-        for (int i = 0; i < packages.Count; i++)
+
+        // Spawn only the selected packages
+        foreach (int packageID in toSpawnPackages)
         {
-            Instantiate(packages[i].type, packageSpawnPoint);
+            PackageData packageData = packages.Find(p => p.packageID == packageID);
+            if (packageData != null && packageData.type != null)
+            {
+                SpawnPackageWithData(packageData);
+            }
         }
 
         packagesPicked = true;
 
+        player.GetComponent<PlayerManagement>().enabled = true;
     }
+
+    private void SpawnPackageWithData(PackageData packageData)
+    {
+        // Instantiate the package prefab
+        GameObject packageInstance = Instantiate(packageData.type, packageSpawnPoint.position, packageSpawnPoint.rotation, packageSpawnPoint);
+
+        // Get or add the Package component and set its data
+        PackageManager packageComponent = packageInstance.GetComponent<PackageManager>();
+
+        if (packageComponent == null)
+        {
+            packageComponent = packageInstance.AddComponent<PackageManager>();
+        }
+
+        // Set the package data from ScriptableObject
+        //packageComponent.recipientName = packageData.packageReceipientName;
+        packageComponent.packageValue = packageData.packageValue;
+        packageComponent.packageID = packageData.packageID;
+        packageComponent.packageHP = packageData.packageHP;
+
+        Debug.Log($"Spawned packageID of  {packageComponent.packageID} with value ${packageComponent.packageValue} and HP of {packageComponent.packageHP}");
+    }
+
+    //public void FinishButton()
+    //{
+    //    clipboard.SetActive(false);
+    //    //Start spawning the packages
+    //    for (int i = 0; i < packages.Count; i++)
+    //    {
+    //        Instantiate(packages[i].type, packageSpawnPoint);
+    //    }
+
+    //    packagesPicked = true;
+
+    //}
 
     //IEnumerator SpawnBox()
     //{

@@ -7,8 +7,9 @@ public class PackageManager : MonoBehaviour
     Vector3 offset;
     float zCoord;
 
-    int packageHP = 2;
-    int packageValue = 10; //prob need to change when using json
+    public int packageHP = 2;
+    public int packageValue = 10; //prob need to change when using json
+    public int packageID;
 
     //SpawnManager spawnManager;
     SpriteRenderer spriteRenderer;
@@ -19,8 +20,8 @@ public class PackageManager : MonoBehaviour
     private void Awake()
     {
         //belt = GameObject.FindGameObjectWithTag("Belt");
-        //spawnManager = GameObject.Find("Canvas").GetComponent<SpawnManager>();
-        // = belt.GetComponent<ConveyerBelt>();
+        ////spawnManager = GameObject.Find("Canvas").GetComponent<SpawnManager>();
+        //conveyer = belt.GetComponent<ConveyerBelt>();
         spriteRenderer = GetComponent<SpriteRenderer>(); // Get this package's renderer
     }
 
@@ -55,11 +56,14 @@ public class PackageManager : MonoBehaviour
     void PackageHPColor()
     {
         //var spriteRenderer = spawnManager.GetPackageClone().GetComponent<SpriteRenderer>();
-        var spriteRenderer = conveyer.GetPackageCloneCB().GetComponent<SpriteRenderer>();
+        var lotsOfPackages = GameObject.FindGameObjectsWithTag("Package");
+        foreach(var lot in lotsOfPackages)
+        {
+            var spriterender = lot.GetComponent<SpriteRenderer>();
+        }
         switch (packageHP)
         {
             default:
-                //this.gameObject.GetComponent<SpriteRenderer>().material.color = new Color();
                 break;
             case 1:
                 spriteRenderer.color = new Color(255f/255f, 169f/255f, 0f/255f); //why need to divide why unity i dun understand 

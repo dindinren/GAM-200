@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Package 1
   m_EditorClassIdentifier: 
   packageID: 1
-  packageHP: 3
+  packageHP: 2
   packageValue: 10
   type: {fileID: 4311261822460233146, guid: 5ffb78596378c6a4d84f2d5de4ef1717, type: 3}
   packageReceipientName: Emily
   packageDescription: Lives near the forest
+  isSelected: 0
