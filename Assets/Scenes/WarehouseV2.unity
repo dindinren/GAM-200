@@ -176,6 +176,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1e771ff8b21b4d479e52beeda644ab2, type: 3}
+--- !u!1 &73133198 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6618366402476583891, guid: d1e771ff8b21b4d479e52beeda644ab2, type: 3}
+  m_PrefabInstance: {fileID: 24145155}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &86105378
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,7 +215,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 78.6, y: 115.34}
+  m_AnchoredPosition: {x: 78.6001, y: 115.339966}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &86105380
@@ -525,6 +530,7 @@ MonoBehaviour:
   clipboard: {fileID: 1477979710}
   proceedbutton: {fileID: 1626554249}
   spawnManager: {fileID: 1477979714}
+  player: {fileID: 73133198}
 --- !u!1 &429423883
 GameObject:
   m_ObjectHideFlags: 0
@@ -2302,15 +2308,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clipboard: {fileID: 1477979710}
+  player: {fileID: 73133198}
   proceedButton: {fileID: 1626554250}
   selection: {fileID: 86105380}
   packageSpawnPoint: {fileID: 1965969209}
+  packagesPicked: 0
   name: {fileID: 554845783}
   reward: {fileID: 1268456072}
-  packagesPicked: 0
   packages:
-  - {fileID: 11400000, guid: 657a1de8e5025d4459e8acb9b4f847f7, type: 2}
-  - {fileID: 11400000, guid: 876bca3ff57c6a543af7f9d1182829a4, type: 2}
+  - {fileID: 1756796623161259496, guid: 94d47f739e59d71458c72798650a2a45, type: 3}
+  - {fileID: 1965228614764102046, guid: 3610548f87ee61840b4eec9243369c18, type: 3}
 --- !u!1001 &1576925930
 PrefabInstance:
   m_ObjectHideFlags: 0

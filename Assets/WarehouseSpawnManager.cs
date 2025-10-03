@@ -27,7 +27,8 @@ public class WarehouseSpawnManager : MonoBehaviour
     public TextMeshProUGUI reward;
 
     [Header("PACKAGES DATA")]
-    public List<PackageData> packages;
+    //public List<PackageData> packages; ///with Scriptable Objects
+    public List<PackageManager> packages; //with prefab gameobjects
 
     void Awake()
     {
@@ -76,11 +77,16 @@ public class WarehouseSpawnManager : MonoBehaviour
 
     void SetPackagesData()
     {
-        name.text = packages[index].packageReceipientName;
-        reward.text = $"Reward: ${packages[index].packageValue}";
+        //name.text = packages[index].packageReceipientName;
+        //reward.text = $"Reward: ${packages[index].packageValue}";
+        //// Update toggle based on package's own selection state
+        //selection.isOn = selectedPackageIDs.Contains(packages[index].packageID);
 
-        // Update toggle based on package's own selection state
+        ///Doing without Scriptable Objects
+        name.text = packages[index].receipientName;
+        reward.text = $"Reward: ${packages[index].packageValue.ToString()}";
         selection.isOn = selectedPackageIDs.Contains(packages[index].packageID);
+
     }
 
     public void NextButton()
@@ -110,8 +116,9 @@ public class WarehouseSpawnManager : MonoBehaviour
         // Spawn only the selected packages
         foreach (int packageID in toSpawnPackages)
         {
-            PackageData packageData = packages.Find(p => p.packageID == packageID);
-            if (packageData != null && packageData.type != null)
+            //PackageData packageData = packages.Find(p => p.packageID == packageID);
+            PackageManager packageData = packages.Find(p => p.packageID == packageID);
+            if (packageData != null && packageData.packagePrefab != null)
             {
                 SpawnPackageWithData(packageData);
             }
@@ -122,10 +129,12 @@ public class WarehouseSpawnManager : MonoBehaviour
         player.GetComponent<PlayerManagement>().enabled = true;
     }
 
-    private void SpawnPackageWithData(PackageData packageData)
+    private void SpawnPackageWithData(PackageManager packageData)
     {
         // Instantiate the package prefab
-        GameObject packageInstance = Instantiate(packageData.type, packageSpawnPoint.position, packageSpawnPoint.rotation, packageSpawnPoint);
+        //GameObject packageInstance = Instantiate(packageData.type, packageSpawnPoint.position, packageSpawnPoint.rotation, packageSpawnPoint);
+        GameObject packageInstance = Instantiate(packageData.packagePrefab, packageSpawnPoint.position, packageSpawnPoint.rotation);
+
 
         // Get or add the Package component and set its data
         PackageManager packageComponent = packageInstance.GetComponent<PackageManager>();
@@ -137,11 +146,17 @@ public class WarehouseSpawnManager : MonoBehaviour
 
         // Set the package data from ScriptableObject
         //packageComponent.recipientName = packageData.packageReceipientName;
-        packageComponent.packageValue = packageData.packageValue;
-        packageComponent.packageID = packageData.packageID;
-        packageComponent.packageHP = packageData.packageHP;
+        //packageComponent.packageValue = packageData.packageValue;
+        //packageComponent.packageID = packageData.packageID;
+        //packageComponent.packageHP = packageData.packageHP;
 
-        Debug.Log($"Spawned packageID of  {packageComponent.packageID} with value ${packageComponent.packageValue} and HP of {packageComponent.packageHP}");
+        ///Set the package data from the Prefab List
+        packageComponent.receipientName = packageData.receipientName;
+        packageComponent.packageID  = packageData.packageID;
+        packageComponent.packageHP = packageData.packageHP;
+        packageComponent.packageValue = packageData.packageValue;
+
+        Debug.Log($"Spawned packageID of  {packageComponent.packageID} with value ${packageComponent.packageValue} and HP of {packageComponent.packageHP} and type {packageComponent.packagePrefab}");
     }
 
     //public void FinishButton()

@@ -3,19 +3,28 @@ using UnityEngine;
 
 public class PackageManager : MonoBehaviour
 {
+    [Header("PACKAGE DETAILS")]
+    public int packageID;
+    public string receipientName;
+    public int packageHP = 2;
+    public int packageValue; 
+    public GameObject packagePrefab;
+    [Header("Dont edit this")]
+    public bool isSelected; // Add this field
+
+
+
     bool isDragging = false;
     Vector3 offset;
     float zCoord;
 
-    public int packageHP = 2;
-    public int packageValue = 10; //prob need to change when using json
-    public int packageID;
+
 
     //SpawnManager spawnManager;
     SpriteRenderer spriteRenderer;
 
-    ConveyerBelt conveyer;
-    GameObject belt;
+    //ConveyerBelt conveyer;
+    //GameObject belt;
 
     private void Awake()
     {
@@ -81,10 +90,11 @@ public class PackageManager : MonoBehaviour
         return packageValue;
     }
 
-    int GetPackageHP()
-    {
-        return packageHP;
-    }
+
+    //int GetPackageHP()
+    //{
+    //    return packageHP;
+    //}
 
     //if package hits the floor, change layer to default
     private void OnCollisionEnter2D(Collision2D collision)
