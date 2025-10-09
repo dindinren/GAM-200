@@ -20,7 +20,7 @@ public class WarehouseSpawnManager : MonoBehaviour
     public Transform packageSpawnPoint;
     int index = 0;
     public bool packagesPicked;
-    //int requiredNumber = 2;
+    public static int requiredNumber = 2;
 
     [Header("DISPLAY DATA")]
     public TextMeshProUGUI name;
@@ -38,6 +38,7 @@ public class WarehouseSpawnManager : MonoBehaviour
             proceedButton.gameObject.SetActive(false);
             Debug.Log("Awake: Button forcefully disabled");
         }
+
     }
 
     void Start()
@@ -198,7 +199,7 @@ public class WarehouseSpawnManager : MonoBehaviour
     //}
     public void ConditionToUnlockProceed()
     {
-        if(toSpawnPackages.Count == 2)
+        if(toSpawnPackages.Count == requiredNumber)
         {
             proceedButton.gameObject.SetActive(true);
         }
@@ -237,4 +238,6 @@ public class WarehouseSpawnManager : MonoBehaviour
             Debug.Log($"Package ID: {packageID}");
         }
     }
+
+    
 }

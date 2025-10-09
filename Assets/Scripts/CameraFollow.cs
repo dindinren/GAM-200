@@ -6,6 +6,8 @@ public class CameraFollow : MonoBehaviour
     public float yOffset;
     public float xOffset;
     public Transform target;
+
+     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {

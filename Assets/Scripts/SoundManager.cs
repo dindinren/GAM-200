@@ -3,7 +3,8 @@ using System;
 public enum SoundType
 {
     JUMP,
-    DELIVERYCOMPLETE
+    DELIVERYCOMPLETE,
+    DAYCOMPLETE
 }
 
 public enum BGM

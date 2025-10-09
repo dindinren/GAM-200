@@ -151,6 +151,9 @@ MonoBehaviour:
   - name: DELIVERYCOMPLETE
     sounds:
     - {fileID: 8300000, guid: eb05b1c0b88fca44e86cbecaf5a18a4b, type: 3}
+  - name: DAYCOMPLETE
+    sounds:
+    - {fileID: 8300000, guid: e5cc58fbf901f4d40b7c948f01b9724b, type: 3}
   bgmLists:
   - name: MENU
     bgms:
