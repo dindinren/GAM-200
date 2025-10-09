@@ -7,7 +7,11 @@ public class CameraFollow : MonoBehaviour
     public float xOffset;
     public Transform target;
 
-     
+    public static bool isFollowing;
+
+    private Vector3 newPos;
+
+    public GameObject stopCameraFollowArea;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -20,7 +24,17 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 newPos = new Vector3(target.position.x + xOffset, target.position.y + yOffset, -10f);
-        transform.position = Vector3.Slerp(transform.position, newPos, FollowSpeed*Time.deltaTime);
+        CameraUpdate();
     }
+
+    public void CameraUpdate()
+    {
+        if (isFollowing == true)
+        {
+            newPos = new Vector3(target.position.x + xOffset, target.position.y + yOffset, -10f);
+            transform.position = Vector3.Slerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
+        }
+    }
+
+
 }

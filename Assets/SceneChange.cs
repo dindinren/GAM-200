@@ -13,4 +13,6 @@ public class SceneChange : MonoBehaviour
             DontDestroyOnLoad(player);
         }
     }
+
+    
 }

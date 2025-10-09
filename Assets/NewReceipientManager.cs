@@ -23,7 +23,7 @@ public class NewReceipientManager : MonoBehaviour
             packMov = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PackageMove>();
         }
 
-        requiredNumber = WarehouseSpawnManager.requiredNumber;
+        requiredNumber = WarehouseSpawnManager.toSpawnPackages.Count;
         Debug.Log($"Required Number: {requiredNumber}");
 
         checker = 0;

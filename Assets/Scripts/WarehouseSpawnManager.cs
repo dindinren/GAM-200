@@ -13,7 +13,7 @@ public class WarehouseSpawnManager : MonoBehaviour
     public Button proceedButton;
 
     public Toggle selection;
-    private List<int> toSpawnPackages = new List<int>();
+    public static List<int> toSpawnPackages = new List<int>();
     private HashSet<int> selectedPackageIDs = new HashSet<int>();
 
 
