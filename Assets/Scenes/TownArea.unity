@@ -505,6 +505,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneInitializer
       objectReference: {fileID: 0}
+    - target: {fileID: 8268020294859503284, guid: 367384f5b857ffc43b245aa0908f12d9, type: 3}
+      propertyPath: startLocation
+      value: 
+      objectReference: {fileID: 432911737154123433}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1554,6 +1558,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fb3f095084b72d4db463c8ffd2e4e84, type: 3}
+--- !u!4 &432911737154123433 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2262477706611004494, guid: 8fb3f095084b72d4db463c8ffd2e4e84, type: 3}
+  m_PrefabInstance: {fileID: 432911737154123432}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1417443440737266202
 PrefabInstance:
   m_ObjectHideFlags: 0
