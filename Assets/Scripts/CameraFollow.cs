@@ -11,7 +11,7 @@ public class CameraFollow : MonoBehaviour
 
     private Vector3 newPos;
 
-    public GameObject stopCameraFollowArea;
+    //public GameObject stopCameraFollowArea;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {

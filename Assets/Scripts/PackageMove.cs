@@ -8,7 +8,6 @@ public class PackageMove : MonoBehaviour
 
     public GameObject receipient; //temp  
 
-
     float distPackageMove = 5;
     
     // Add these variables for smooth rotation return

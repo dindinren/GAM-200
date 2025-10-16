@@ -1,9 +1,7 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.Rendering.ReloadAttribute;
 
 public class WarehouseSpawnManager : MonoBehaviour
 {
@@ -22,6 +20,8 @@ public class WarehouseSpawnManager : MonoBehaviour
     public bool packagesPicked;
     public static int requiredNumber = 2;
 
+    public static bool playerReadyToGo;
+
     [Header("DISPLAY DATA")]
     public TextMeshProUGUI name;
     public TextMeshProUGUI reward;
@@ -32,6 +32,7 @@ public class WarehouseSpawnManager : MonoBehaviour
 
     void Awake()
     {
+
         // Hide button as early as possible
         if (proceedButton != null)
         {
@@ -47,6 +48,9 @@ public class WarehouseSpawnManager : MonoBehaviour
         selectedPackageIDs.Clear();
         toSpawnPackages.Clear();
         selection.isOn = false;
+
+        playerReadyToGo = false;
+
 
         index = 0;
         if (packages != null && packages.Count > 0)
@@ -127,7 +131,11 @@ public class WarehouseSpawnManager : MonoBehaviour
 
         packagesPicked = true;
 
+        playerReadyToGo = true;
+        Debug.Log($"ready bool: {playerReadyToGo}");
+
         player.GetComponent<PlayerManagement>().enabled = true;
+
     }
 
     private void SpawnPackageWithData(PackageManager packageData)

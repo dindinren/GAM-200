@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/WarehouseV2.unity
     guid: 991f8cbf5886bb44db3f62e7fe6febaa
   - enabled: 1
+    path: Assets/Scenes/WarehouseOutside.unity
+    guid: b728d268e13a8ad40a7ceb21ae87de17
+  - enabled: 1
     path: Assets/Scenes/TownArea.unity
     guid: c76622a4acbc8454e8d2ae3b3f062f4b
   m_configObjects:

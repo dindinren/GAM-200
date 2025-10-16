@@ -10,6 +10,16 @@ public class PlayerManagement : MonoBehaviour
     public int money;
 
     public GameObject packageTriggerArea; 
+
+    public PackageMove PackageMove;
+
+    private void Awake()
+    {
+        if(PackageMove == null)
+        {
+            PackageMove = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PackageMove>();
+        }
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -57,12 +67,25 @@ public class PlayerManagement : MonoBehaviour
             spriteFlip.flipX= false;
         }
 
-            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        Jump();
 
+    }
+
+    void Jump()
+    {
+        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
         ///JUMP
-        if(Input.GetKeyDown(KeyCode.Space) && touchingFloor == true)
+        if (Input.GetKeyDown(KeyCode.Space) && touchingFloor == true)
         {
             rb.AddForce(new Vector3(rb.linearVelocityY,jumpForce));
+            foreach (GameObject pack in PackageMove.GetAttachedPackagesList())
+            {
+                if (pack.CompareTag("Package"))
+                {
+                    Rigidbody2D rb2 = pack.GetComponent<Rigidbody2D>();
+                    rb2.AddForceX(50, ForceMode2D.Force);
+                }
+            }
 
             touchingFloor = false;
 
