@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UIElements;
+using static UnityEngine.Rendering.ReloadAttribute;
 
 public class PlayerPackageCheck : MonoBehaviour
 {
@@ -9,12 +11,21 @@ public class PlayerPackageCheck : MonoBehaviour
     public GameObject invisibleWall;
     public GameObject SceneChangeTriggerArea;
     public PackageMove PackageMove;
-    //player packages
+
+    public GameObject dialogueBox;
+    public PlayerManagement player;
+
+    ///very specific bug fix that prob have a better fix but i too lazy
+    public GameObject PackageTriggerArea;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         PackageMove = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PackageMove>();
+
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManagement>();
+
 
         SceneChangeTriggerArea.SetActive(false);
         invisibleWall.SetActive(true);
@@ -23,7 +34,15 @@ public class PlayerPackageCheck : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Dialogue.dialogueEnded == true) //idk if this will fuck up the framw rate im sorry
+        {
+            Debug.Log("DIALOGUE ENDED");
+            //player can move again
+            player.enabled = true;
 
+            //allow player to interact with the PackageTriggerArea
+            PackageTriggerArea.layer = LayerMask.NameToLayer("Default");
+        }
     }
 
     public void Checker()
@@ -38,7 +57,24 @@ public class PlayerPackageCheck : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        DialogueWarn();
+
         Checker();
     }
+
+    public void DialogueWarn()
+    {
+        //Set the PackageTriggerArea to ignore raycast until finish
+        PackageTriggerArea.layer = LayerMask.NameToLayer("Ignore Raycast");
+
+        dialogueBox.SetActive(true);
+
+        Dialogue dlog = dialogueBox.GetComponent<Dialogue>();
+        dlog.DialogueAppear();
+
+        //Disbale player movement
+        player.enabled = false;
+    }
+
 
 }

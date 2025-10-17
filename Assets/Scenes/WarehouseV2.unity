@@ -377,6 +377,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1477979711}
+  - {fileID: 1502065901}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -758,6 +759,9 @@ MonoBehaviour:
   invisibleWall: {fileID: 454852203}
   SceneChangeTriggerArea: {fileID: 4130461311613453732}
   PackageMove: {fileID: 0}
+  dialogueBox: {fileID: 1502065900}
+  player: {fileID: 0}
+  PackageTriggerArea: {fileID: 172963700}
 --- !u!1 &554845781
 GameObject:
   m_ObjectHideFlags: 0
@@ -2472,6 +2476,16 @@ MonoBehaviour:
   packages:
   - {fileID: 1756796623161259496, guid: 94d47f739e59d71458c72798650a2a45, type: 3}
   - {fileID: 1965228614764102046, guid: 3610548f87ee61840b4eec9243369c18, type: 3}
+--- !u!1 &1502065900 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4809287257765405978, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
+  m_PrefabInstance: {fileID: 3810482738976404533}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1502065901 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 422370889953304324, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
+  m_PrefabInstance: {fileID: 3810482738976404533}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1576925930
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3183,6 +3197,119 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &3810482738976404533
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 151572541}
+    m_Modifications:
+    - target: {fileID: 422370889953304324, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 422370889953304324, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 422370889953304324, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 422370889953304324, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 422370889953304324, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 422370889953304324, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 422370889953304324, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -200
+      objectReference: {fileID: 0}
+    - target: {fileID: 422370889953304324, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -800
+      objectReference: {fileID: 0}
+    - target: {fileID: 422370889953304324, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 422370889953304324, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 422370889953304324, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 422370889953304324, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 422370889953304324, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 422370889953304324, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 422370889953304324, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 422370889953304324, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 422370889953304324, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -300
+      objectReference: {fileID: 0}
+    - target: {fileID: 422370889953304324, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 422370889953304324, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 422370889953304324, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864204076198608938, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
+      propertyPath: textSpeed
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864204076198608938, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
+      propertyPath: lines.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864204076198608938, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
+      propertyPath: 'lines.Array.data[0]'
+      value: I can't leave without the packages...
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864204076198608938, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
+      propertyPath: 'lines.Array.data[1]'
+      value: I HATE CODING HELP ME
+      objectReference: {fileID: 0}
+    - target: {fileID: 4809287257765405978, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
+      propertyPath: m_Name
+      value: DialogueBox_Invisible
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
 --- !u!1001 &4130461311613453731
 PrefabInstance:
   m_ObjectHideFlags: 0
