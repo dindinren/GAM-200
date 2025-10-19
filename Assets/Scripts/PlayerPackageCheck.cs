@@ -34,15 +34,19 @@ public class PlayerPackageCheck : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Dialogue.dialogueEnded == true) //idk if this will fuck up the framw rate im sorry
+        if (PackageMove.GetAttachedPackagesList().Count != WarehouseSpawnManager.requiredNumber)
         {
-            Debug.Log("DIALOGUE ENDED");
-            //player can move again
-            player.enabled = true;
+            if (Dialogue.dialogueEnded == true) //idk if this will fuck up the framw rate im sorry
+            {
+                Debug.Log("DIALOGUE ENDED");
+                //player can move again
+                player.enabled = true;
 
-            //allow player to interact with the PackageTriggerArea
-            PackageTriggerArea.layer = LayerMask.NameToLayer("Default");
+                //allow player to interact with the PackageTriggerArea
+                PackageTriggerArea.layer = LayerMask.NameToLayer("Default");
+            }
         }
+
     }
 
     public void Checker()
@@ -57,9 +61,13 @@ public class PlayerPackageCheck : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        DialogueWarn();
-
+        if (PackageMove.GetAttachedPackagesList().Count != WarehouseSpawnManager.requiredNumber)
+        {
+            DialogueWarn();
+        }
         Checker();
+
+
     }
 
     public void DialogueWarn()
