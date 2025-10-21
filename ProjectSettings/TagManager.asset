@@ -8,6 +8,7 @@ TagManager:
   - Paddle
   - Ground
   - Belt
+  - Receipient
   layers:
   - Default
   - TransparentFX

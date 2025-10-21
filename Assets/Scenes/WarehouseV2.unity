@@ -3393,22 +3393,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1864204076198608938, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
-      propertyPath: textSpeed
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 1864204076198608938, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
-      propertyPath: lines.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1864204076198608938, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
-      propertyPath: 'lines.Array.data[0]'
-      value: I can't leave without the packages...
-      objectReference: {fileID: 0}
-    - target: {fileID: 1864204076198608938, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
-      propertyPath: 'lines.Array.data[1]'
-      value: I HATE CODING HELP ME
-      objectReference: {fileID: 0}
     - target: {fileID: 4809287257765405978, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
       propertyPath: m_Name
       value: DialogueBox_Invisible

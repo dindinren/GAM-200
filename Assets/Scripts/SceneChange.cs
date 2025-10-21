@@ -16,6 +16,8 @@ public class SceneChange : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //TO ADD: player reaches the trigger area, make it so they cant move 
+
         if(collision.CompareTag("Player"))
         {
             Checker();

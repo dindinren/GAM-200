@@ -32,11 +32,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 422370889953304324}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -687.14, y: 0}
-  m_SizeDelta: {x: -1514.28, y: -100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 50, y: 0}
+  m_SizeDelta: {x: 205.71997, y: 180}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &4205020438315597005
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -299,6 +299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueBox: {fileID: 4809287257765405978}
-  lines: []
+  lines:
+  - I can't leave without the packages...
   text: {fileID: 7730437272523407973}
-  textSpeed: 1
+  textSpeed: 0.05
