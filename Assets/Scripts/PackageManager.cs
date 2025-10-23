@@ -111,10 +111,5 @@ public class PackageManager : MonoBehaviour
             Debug.Log($"PACKAGE TOO DAMAGE! CURRENTLY AT {packageHP}");
             
         }
-
-        //if (collision.gameObject.CompareTag("Paddle"))
-        //{
-        //    this.GetComponent<Rigidbody2D>().simulated = false;
-        //}
     }
 }

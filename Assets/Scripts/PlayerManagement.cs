@@ -4,14 +4,17 @@ using System.Runtime.CompilerServices;
 public class PlayerManagement : MonoBehaviour
 {
     public GameObject player;
+    public GameObject interactionButton;
+    public GameObject packageTriggerArea;
+
+    public PackageMove PackageMove;
+
+    [Header("PLAYER STATS")]
     public float speed;
     public float jumpForce;
     public bool touchingFloor;
     public int money;
 
-    public GameObject packageTriggerArea; 
-
-    public PackageMove PackageMove;
 
     private void Awake()
     {
@@ -24,6 +27,7 @@ public class PlayerManagement : MonoBehaviour
     void Start()
     {
         packageTriggerArea.SetActive(true);
+        interactionButton.SetActive(false);
 
         ///temp placement of music
         SoundManager.PlayBGM(BGM.MENU);
@@ -103,12 +107,29 @@ public class PlayerManagement : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         packageTriggerArea.SetActive(false);
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.collider.gameObject.tag == "Ground")
         {
             touchingFloor = true;
             packageTriggerArea.SetActive(true);
+        }
+        
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Receipient")
+        {
+            interactionButton.SetActive(true);
+        }
+        Debug.Log("SHOW F");
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Receipient")
+        {
+            interactionButton.SetActive(false);
         }
     }
 

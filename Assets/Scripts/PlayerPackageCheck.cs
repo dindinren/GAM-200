@@ -61,12 +61,16 @@ public class PlayerPackageCheck : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (PackageMove.GetAttachedPackagesList().Count != WarehouseSpawnManager.requiredNumber)
+        if(collision.gameObject.tag == "Player")
         {
-            DialogueWarn();
-        }
-        Checker();
+            if (PackageMove.GetAttachedPackagesList().Count != WarehouseSpawnManager.requiredNumber)
+            {
+                DialogueWarn();
+            }
+            Checker();
 
+
+        }
 
     }
 

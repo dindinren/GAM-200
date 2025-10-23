@@ -32,7 +32,6 @@ public class WarehouseSpawnManager : MonoBehaviour
 
     void Awake()
     {
-
         // Hide button as early as possible
         if (proceedButton != null)
         {

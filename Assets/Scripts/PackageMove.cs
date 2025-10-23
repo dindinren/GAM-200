@@ -59,15 +59,11 @@ public class PackageMove : MonoBehaviour
             {
                 package.transform.SetParent(packageParent.transform);
 
-                //package.GetComponent<Rigidbody2D>().simulated = false;
-                //package.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
-
-                //package.transform.rotation = Quaternion.identity;
                 attachedPackages.Add(package);
 
                 //set the pacakge to ignore raycast
                 package.layer = LayerMask.NameToLayer("Ignore Raycast");
-                //stop from deforming
+                //stop from deforming                
                 package.transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0);
             }
 

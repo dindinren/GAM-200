@@ -8,9 +8,11 @@ public class Dialogue_NPC : MonoBehaviour
 {
     public GameObject dialogueBox;
     public List<NewReceipientManager> receipientsManager;
+    private PackageMove packMov;
 
     [Header("LINES")]
     public string[] lines;
+    public int dialogue_ID;
 
     [Header("BUTTONS")]
     public Button packageAccept;
@@ -33,57 +35,86 @@ public class Dialogue_NPC : MonoBehaviour
     public static bool dialogueEnded;
     public bool packaageHandovered;
     private bool playerChoose;
+    private bool isTyping;
 
-  
+    private void Awake()
+    {
+        if(packMov == null)
+        {
+            packMov = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PackageMove>();
+        }
 
+        //StopAllCoroutines();
+        NPC_Checker();
+
+    }
     private void Start()
     {
         playerChoose = false;
         dialogueEnded = false;
         packaageHandovered = false;
 
+        index = 0;
+
         //Set the dialogue box to not show first
         dialogueBox.SetActive(false);
+
 
     }
     private void Update()
     {
+        //Debug.Log($"isTyping: {isTyping}");
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (playerChoose == false)
+            {
+                DialogueAdvance();
+                NPC_Checker();
+            }
+        }
         Debug.Log($"INDEX NO. {index}");
 
-        if (playerChoose == false && Input.GetMouseButtonDown(0))
-        {
-            DialogueAdvance();
-            NPC_Checker();
-        }
+
 
     }
 
     public void DialogueAdvance()
     {
-        //Advance to the next line
-        if (text.text == lines[index])
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            NextLine();
+            //Advance to the next line
+            if (text.text == lines[index])
+            {
+                NextLine();
+            }
+            else
+            {
+                StopAllCoroutines();
+                //text.text = string.Empty;
+                text.text = lines[index];
+            }
+
         }
-        else
-        {
-            StopAllCoroutines();
-            //get the current line
-            text.text = lines[index];
-        }
+
     }
 
 
     public void ButtonAccept()
     {
-        NewReceipientManager.checker += 1;
-
-        index = acceptButtonIndexNumber;
-        DialogueAdvance();
+        index = acceptButtonIndexNumber-1;
         NPC_Checker();
+        NextLine();
+        NPC_Checker();
+
 
         playerChoose = false;
         packaageHandovered = true;
+
+        packageAccept.gameObject.SetActive(false);
+        exit.gameObject.SetActive(false);   
+
+        DayManager.checker += 1;
+
     }
     public void ButtonExit()
     {
@@ -98,8 +129,19 @@ public class Dialogue_NPC : MonoBehaviour
     {
         if (index == interactionChooseIndexNumber)
         {
-            packageAccept.gameObject.SetActive(true);
-            exit.gameObject.SetActive(true);
+            foreach(GameObject p in packMov.GetAttachedPackagesList())
+            {
+                if(p.GetComponent<PackageManager>().packageID == dialogue_ID)
+                {
+                    packageAccept.gameObject.SetActive(true);
+                }
+                else
+                {
+                    packageAccept.gameObject.SetActive(false);
+                }
+
+                exit.gameObject.SetActive(true);
+            }
 
             playerChoose = true;
 
@@ -108,18 +150,14 @@ public class Dialogue_NPC : MonoBehaviour
 
         else if (index == acceptButtonIndexNumber)
         {
+            packaageHandovered = true;
+
             playerPP.SetActive(true);
             NPCPP.SetActive(false);
 
             text.alignment = TextAlignmentOptions.TopLeft;
 
-
         }
-
-        //else if (index == exitButtonIndexNumber)
-        //{
-        //}
-
 
         else
         {
@@ -129,25 +167,25 @@ public class Dialogue_NPC : MonoBehaviour
             playerPP.SetActive(false);
             NPCPP.SetActive(true);
 
-            //playerChoose = false;
 
             text.alignment = TextAlignmentOptions.TopRight;
         }
 
     }
-    
 
-    public void DialogueAppear()
-    {
-        text.text = string.Empty;
-        StartDialogue();
-    }
-    void StartDialogue()
-    {
-        dialogueEnded = false;
 
-        index = 0;
-        StartCoroutine(TypeLine());
+
+    public void StartDialogue()
+    {
+        if(NewReceipientManager.dialogueStart == false)
+        {
+            text.text = string.Empty;
+            index = 0;
+            StartCoroutine(TypeLine());
+            dialogueEnded = false;
+        }
+
+        //isTyping = false;
     }
 
     IEnumerator TypeLine()
@@ -157,16 +195,20 @@ public class Dialogue_NPC : MonoBehaviour
             text.text += c;
             yield return new WaitForSeconds(textSpeed);
         }
-
     }
 
     void NextLine()
     {
+        StopAllCoroutines();
+
         if (dialogueEnded == false && index < lines.Length - 1)
         {
             index++;
+
             text.text = string.Empty;
+
             StartCoroutine(TypeLine());
+            //isTyping = false;
         }
         else
         {
