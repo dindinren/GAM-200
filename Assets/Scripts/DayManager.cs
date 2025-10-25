@@ -19,7 +19,10 @@ public class DayManager : MonoBehaviour
 
 
     private int requiredNumber;
-    private bool checkComplete;
+    private bool result_has_played;
+    bool key_is_pressed;
+
+
     private void Awake()
     {
         NewReceipientManager = GameObject.FindGameObjectWithTag("Receipient").GetComponent<NewReceipientManager>();
@@ -34,46 +37,64 @@ public class DayManager : MonoBehaviour
         fail.SetActive(false);
         pass.SetActive(false);
 
+        result_has_played = false;
+
         checker = 0;
     }
-    private void Update()
-    {
-        if(Dialogue_NPC.dialogueEnded == true && NewReceipientManager.showResult == true)
-        {
-            PackagesCompleted();
-        }
-    }
-    public void PackagesCompleted()
-    {
-        checkComplete = false;
-        if (checker == requiredNumber)
-        {
-            ResultScreen();
 
-            SoundManager.PlaySound(SoundType.DAYCOMPLETE);
-            //Time.timeScale = 0f;
+    private void FixedUpdate()
+    {
+        DayCompleted();
+
+
+        if (Input.GetKeyDown(KeyCode.F) || Input.GetMouseButtonDown(0))
+        {
+            key_is_pressed = true;
+        }
+        else
+        {
+            key_is_pressed = false;
         }
     }
+
+    /// <summary>
+    /// 1) When Checker == requiredNumber && dialogue has ended
+    /// 2) show day completed scene
+    /// 3) when click/press F, it will show how well you've done based on how much money you got
+    /// </summary>
+
+    void DayCompleted()
+    {
+        if(checker == requiredNumber || TimeManager.gameOngoing == false)
+        {
+            if(Dialogue_NPC.dialogueEnded == true && result_has_played == false)
+            {
+                StartCoroutine(PlayResultScreen());
+            }
+        }
+    }
+
+    IEnumerator PlayResultScreen()
+    {
+        completedScreen.SetActive(true);
+        yield return new WaitForSeconds(1);
+        PlayerPerformanceResult();
+        yield return new WaitForSeconds(0.1f);
+        result_has_played = true;
+    }
+    
     void PlayerPerformanceResult()
     {
         completedScreen.SetActive(false);
+
         if (playerManger.GetMoneySatus() >= requiredMoney)
         {
             pass.SetActive(true);
         }
-        else
+        else 
         {
             fail.SetActive(true);
         }
     }
-    public void ResultScreen()
-    {
-        completedScreen.SetActive(true);
-        if (Input.GetMouseButton(0) && checkComplete == false)
-        {
-            PlayerPerformanceResult();
-            checkComplete = true;
-        }
-    }
-
+    
 }

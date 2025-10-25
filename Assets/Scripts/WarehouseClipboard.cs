@@ -4,12 +4,12 @@ public class WarehouseClipboard : MonoBehaviour
 {
     public GameObject clipboard;
     public GameObject proceedbutton;
-    public WarehouseSpawnManager spawnManager;
+    //public WarehouseSpawnManager spawnManager;
     public GameObject player;
 
     private void OnMouseDown()
     {
-        if(spawnManager.packagesPicked == false)
+        if(WarehouseSpawnManager.playerReadyToGo == false)
         {
             clipboard.SetActive(true);
             proceedbutton.SetActive(false);

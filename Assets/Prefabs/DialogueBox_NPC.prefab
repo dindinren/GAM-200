@@ -226,10 +226,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueBox: {fileID: 925996432704404962}
-  receipientsManager:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   lines:
   - Ohhh.... I wonder where is my package....
   - Ohh! A new face! Welcome to our humble little town!
@@ -237,14 +233,17 @@ MonoBehaviour:
   - Ohh Thank you!! I guess you're the new carrier around here!
   - But I'm glad my package came just in time!
   - Alright, See you around!
+  dialogue_ID: 0
   packageAccept: {fileID: 20033735837623487}
   exit: {fileID: 4824986751670165712}
   playerPP: {fileID: 3145728652133247395}
   NPCPP: {fileID: 6362258344648075472}
   acceptButtonIndexNumber: 2
   exitButtonIndexNumber: 5
+  interactionChooseIndexNumber: 0
   text: {fileID: 2936925946811430447}
-  textSpeed: 0.05
+  textSpeed: 0.01
+  packaageHandovered: 0
 --- !u!1 &926438187849472265
 GameObject:
   m_ObjectHideFlags: 0

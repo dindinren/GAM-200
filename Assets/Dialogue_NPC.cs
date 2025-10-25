@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Dialogue_NPC : MonoBehaviour
 {
     public GameObject dialogueBox;
-    public List<NewReceipientManager> receipientsManager;
+    //public List<NewReceipientManager> receipientsManager;
     private PackageMove packMov;
 
     [Header("LINES")]
@@ -34,8 +34,10 @@ public class Dialogue_NPC : MonoBehaviour
     private int index;
     public static bool dialogueEnded;
     public bool packaageHandovered;
+    //int packageHandovered_Presses;
     private bool playerChoose;
-    private bool isTyping;
+    bool F_is_Pressed;
+    bool nextLinePls;
 
     private void Awake()
     {
@@ -45,7 +47,6 @@ public class Dialogue_NPC : MonoBehaviour
         }
 
         //StopAllCoroutines();
-        NPC_Checker();
 
     }
     private void Start()
@@ -53,52 +54,83 @@ public class Dialogue_NPC : MonoBehaviour
         playerChoose = false;
         dialogueEnded = false;
         packaageHandovered = false;
+        nextLinePls = false;
 
-        index = 0;
+        NPC_Checker();
+
 
         //Set the dialogue box to not show first
         dialogueBox.SetActive(false);
 
-
     }
-    private void Update()
+
+    private void FixedUpdate()
     {
-        //Debug.Log($"isTyping: {isTyping}");
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (playerChoose == false)
+            F_is_Pressed = true;
+            DialogueManager();
+        }
+        else
+        {
+            F_is_Pressed = false;
+        }
+
+    }
+
+    IEnumerator Delay_nextLinePls()
+    {
+        yield return new WaitForSeconds(0.01f);
+        nextLinePls = true;
+    }
+
+    IEnumerator Delay_PackageHandover()
+    {
+        packaageHandovered = true;
+        yield return new WaitForSeconds(0.01f);
+        packaageHandovered = false;
+    }
+
+    void DialogueManager()
+    {
+
+        if (playerChoose == false && F_is_Pressed && dialogueEnded == false)
+        {
+            if (nextLinePls)
             {
                 DialogueAdvance();
+                Debug.Log("Dialogue Advance");
                 NPC_Checker();
+                Debug.Log("NPC Checker");
             }
+            else
+            {
+                StartCoroutine(Delay_nextLinePls());
+                Debug.Log("DELAY FINSIH");
+            }
+            Debug.Log($"nextLinePls: {nextLinePls}");
+
+            Debug.Log($"INDEX NO. {index}");
+
         }
-        Debug.Log($"INDEX NO. {index}");
-
-
-
     }
 
     public void DialogueAdvance()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        //Advance to the next line
+        if (text.text == lines[index])
         {
-            //Advance to the next line
-            if (text.text == lines[index])
-            {
-                NextLine();
-            }
-            else
-            {
-                StopAllCoroutines();
-                //text.text = string.Empty;
-                text.text = lines[index];
-            }
-
+            NextLine();
+        }
+        else
+        {
+            StopAllCoroutines();
+            text.text = lines[index];
         }
 
     }
 
-
+    #region Buttons
     public void ButtonAccept()
     {
         index = acceptButtonIndexNumber-1;
@@ -106,14 +138,12 @@ public class Dialogue_NPC : MonoBehaviour
         NextLine();
         NPC_Checker();
 
+        packageAccept.gameObject.SetActive(false);
+        exit.gameObject.SetActive(false);
+
 
         playerChoose = false;
-        packaageHandovered = true;
-
-        packageAccept.gameObject.SetActive(false);
-        exit.gameObject.SetActive(false);   
-
-        DayManager.checker += 1;
+        DayManager.checker += 1; //prob put somewhere else
 
     }
     public void ButtonExit()
@@ -124,12 +154,13 @@ public class Dialogue_NPC : MonoBehaviour
 
         playerChoose = false;
     }
+    #endregion 
 
     public void NPC_Checker()
     {
         if (index == interactionChooseIndexNumber)
-        {
-            foreach(GameObject p in packMov.GetAttachedPackagesList())
+        { 
+            foreach (GameObject p in packMov.GetAttachedPackagesList())
             {
                 if(p.GetComponent<PackageManager>().packageID == dialogue_ID)
                 {
@@ -150,13 +181,11 @@ public class Dialogue_NPC : MonoBehaviour
 
         else if (index == acceptButtonIndexNumber)
         {
-            packaageHandovered = true;
-
             playerPP.SetActive(true);
             NPCPP.SetActive(false);
-
             text.alignment = TextAlignmentOptions.TopLeft;
 
+            StartCoroutine(Delay_PackageHandover());
         }
 
         else
@@ -167,8 +196,8 @@ public class Dialogue_NPC : MonoBehaviour
             playerPP.SetActive(false);
             NPCPP.SetActive(true);
 
-
             text.alignment = TextAlignmentOptions.TopRight;
+
         }
 
     }
@@ -177,15 +206,14 @@ public class Dialogue_NPC : MonoBehaviour
 
     public void StartDialogue()
     {
-        if(NewReceipientManager.dialogueStart == false)
-        {
-            text.text = string.Empty;
-            index = 0;
-            StartCoroutine(TypeLine());
-            dialogueEnded = false;
-        }
+        text.text = string.Empty;
+        index = 0;
 
-        //isTyping = false;
+        StartCoroutine(TypeLine());
+        
+        dialogueEnded = false;
+
+        Debug.Log("DIALOGUE HAS BEEN STARTED");
     }
 
     IEnumerator TypeLine()
@@ -199,22 +227,24 @@ public class Dialogue_NPC : MonoBehaviour
 
     void NextLine()
     {
-        StopAllCoroutines();
+        //StopAllCoroutines();
 
         if (dialogueEnded == false && index < lines.Length - 1)
         {
             index++;
-
             text.text = string.Empty;
-
             StartCoroutine(TypeLine());
+            Debug.Log("NEXT LINE?");
             //isTyping = false;
         }
         else
         {
-            dialogueEnded = true;
-
             dialogueBox.SetActive(false);
+            dialogueEnded = true;
+            index = 0;
+            Debug.Log("DIALOGUE IS FINISHED");
+
+
         }
     }
 

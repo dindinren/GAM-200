@@ -17,7 +17,7 @@ public class WarehouseSpawnManager : MonoBehaviour
 
     public Transform packageSpawnPoint;
     int index = 0;
-    public bool packagesPicked;
+    //public bool packagesPicked;
     public static int requiredNumber = 2;
 
     public static bool playerReadyToGo;
@@ -36,7 +36,7 @@ public class WarehouseSpawnManager : MonoBehaviour
         if (proceedButton != null)
         {
             proceedButton.gameObject.SetActive(false);
-            Debug.Log("Awake: Button forcefully disabled");
+            //Debug.Log("Awake: Button forcefully disabled");
         }
 
     }
@@ -59,7 +59,7 @@ public class WarehouseSpawnManager : MonoBehaviour
         if (proceedButton != null)
         {
             proceedButton.gameObject.SetActive(false);
-            Debug.Log("Start: Button forcefully disabled");
+            //Debug.Log("Start: Button forcefully disabled");
         }
     }
 
@@ -69,7 +69,7 @@ public class WarehouseSpawnManager : MonoBehaviour
         if (proceedButton != null)
         {
             proceedButton.gameObject.SetActive(false);
-            Debug.Log("OnEnable: Button forcefully disabled");
+            //Debug.Log("OnEnable: Button forcefully disabled");
         }
     }
 
@@ -128,10 +128,10 @@ public class WarehouseSpawnManager : MonoBehaviour
             }
         }
 
-        packagesPicked = true;
+        //packagesPicked = true;
 
         playerReadyToGo = true;
-        Debug.Log($"ready bool: {playerReadyToGo}");
+        //Debug.Log($"ready bool: {playerReadyToGo}");
 
         player.GetComponent<PlayerManagement>().enabled = true;
 
@@ -164,46 +164,10 @@ public class WarehouseSpawnManager : MonoBehaviour
         packageComponent.packageHP = packageData.packageHP;
         packageComponent.packageValue = packageData.packageValue;
 
-        Debug.Log($"Spawned packageID of  {packageComponent.packageID} with value ${packageComponent.packageValue} and HP of {packageComponent.packageHP} and type {packageComponent.packagePrefab}");
+        //Debug.Log($"Spawned packageID of  {packageComponent.packageID} with value ${packageComponent.packageValue} and HP of {packageComponent.packageHP} and type {packageComponent.packagePrefab}");
     }
 
-    //public void FinishButton()
-    //{
-    //    clipboard.SetActive(false);
-    //    //Start spawning the packages
-    //    for (int i = 0; i < packages.Count; i++)
-    //    {
-    //        Instantiate(packages[i].type, packageSpawnPoint);
-    //    }
 
-    //    packagesPicked = true;
-
-    //}
-
-    //IEnumerator SpawnBox()
-    //{
-
-    //}
-
-    //private System.Collections.IEnumerator SpawnBoxesRoutine()
-    //{
-    //    isSpawning = true;
-    //    BoxAnimation.Play("Warehouse", 0);
-    //    yield return null;
-
-    //    yield return new WaitUntil(() =>
-    //    {
-    //        AnimatorStateInfo state = BoxAnimation.GetCurrentAnimatorStateInfo(0);
-    //        return state.IsName("None");
-    //    });
-
-    //    // Spawn the box
-    //    package = Instantiate(RealBox, new Vector2(3.82093f, 3.275727f), Quaternion.identity);
-    //    //packageList.Add(package);
-    //    SpawnedBoxes++;
-
-    //    isSpawning = false;
-    //}
     public void ConditionToUnlockProceed()
     {
         if(toSpawnPackages.Count == requiredNumber)
@@ -226,7 +190,7 @@ public class WarehouseSpawnManager : MonoBehaviour
             {
                 selectedPackageIDs.Add(currentSelection);
                 toSpawnPackages.Add(currentSelection);
-                Debug.Log($"Package {currentSelection} ADDED. Total: {toSpawnPackages.Count}");
+                //Debug.Log($"Package {currentSelection} ADDED. Total: {toSpawnPackages.Count}");
             }
         }
         else
@@ -235,14 +199,14 @@ public class WarehouseSpawnManager : MonoBehaviour
             {
                 selectedPackageIDs.Remove(currentSelection);
                 toSpawnPackages.Remove(currentSelection);
-                Debug.Log($"Package {currentSelection} REMOVED. Total: {toSpawnPackages.Count}");
+                //Debug.Log($"Package {currentSelection} REMOVED. Total: {toSpawnPackages.Count}");
             }
         }
 
-        Debug.Log("AWAITING TO SPAWN PACKAGES:");
+        //Debug.Log("AWAITING TO SPAWN PACKAGES:");
         foreach (int packageID in toSpawnPackages)
         {
-            Debug.Log($"Package ID: {packageID}");
+            //Debug.Log($"Package ID: {packageID}");
         }
     }
 

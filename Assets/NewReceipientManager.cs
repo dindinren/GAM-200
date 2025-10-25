@@ -4,18 +4,18 @@ public class NewReceipientManager : MonoBehaviour
 {
     private PackageMove packMov;
     public PlayerManagement playerManagement;
-    //private PackageManager packageManager;
-    
-    public GameObject winScreen; //temp for now until i got a levelmanager up 
+
+    [Header("DIALOGUE BOX")]
     public GameObject dialogueBox;
 
-    public Collider2D receipientCollider;
 
     [Header("-------------")]
     public bool completed;
     public static bool showResult;
-    public static bool dialogueStart;
-    //bool NPCCome = false;
+    bool playerIsNear = false;
+    int playerCount = 0;
+    bool F_is_Pressed;
+    
 
     [Header("RECEIPIENT DATA")]
     public int receipientID;
@@ -26,20 +26,11 @@ public class NewReceipientManager : MonoBehaviour
         {
             packMov = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PackageMove>();
         }
-        receipientCollider = GetComponent<Collider2D>();
-
         playerManagement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManagement>();
-
-
-        dialogueBox.SetActive(false);
-
-        dialogueStart = false;
-
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //checker = 0;
 
     }
 
@@ -57,53 +48,51 @@ public class NewReceipientManager : MonoBehaviour
         }
         if(Dialogue_NPC.dialogueEnded == true)
         {
-            receipientCollider.enabled = true;
             playerManagement.enabled = true;
         }
 
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        //NPCCome = true;
-    }
 
-    //IEnumerator test()
-    //{
-    //    dialogueBox.SetActive(true);
-    //    yield return new WaitForSeconds(3);
-
-    //    Dialogue_NPC dlog = dialogueBox.GetComponent<Dialogue_NPC>();
-    //    dlog.StartDialogue();
-    //}
-    private void OnTriggerStay2D(Collider2D collision)
+   void DialogueSTART()
     {
-        //Debug.Log($"NPCCome: {NPCCome}");
-        if (Input.GetKey(KeyCode.F) && (collision.gameObject.tag == "Player"))
+        if (playerIsNear && F_is_Pressed && playerCount == 0)
         {
-            dialogueBox.SetActive(true);
+            if (dialogueBox.GetComponent<Dialogue_NPC>().dialogue_ID == receipientID)
+            {
+                dialogueBox.SetActive(true);
+                dialogueBox.GetComponent<Dialogue_NPC>().StartDialogue();
+                playerCount++;
+                //StartCoroutine(Delay_playerCount());
 
-            Dialogue_NPC dlog = dialogueBox.GetComponent<Dialogue_NPC>();
-            dlog.StartDialogue();
-
-            //StartCoroutine(test());
-
-            playerManagement.enabled = false;
-
-            dialogueStart = true;
-
-            //receipientCollider.enabled = false;
-
-            //PlayerManagement playManage = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManagement>();
-            //playManage.interactionButton.SetActive(true);
-
+                Debug.Log($"PlayerCount = {playerCount}");
+            }
 
         }
+    }
 
+    private void FixedUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            F_is_Pressed = true;
+            DialogueSTART();
+
+        }
+        else
+        {
+            F_is_Pressed = false;
+        }   
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        playerIsNear = true;
+        playerCount = 0;
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        dialogueStart = false;
-        Debug.Log("BECOME FAUST");
+        playerIsNear = false;
+        playerCount = 1;
     }
 
     public int returnReceipientID()
@@ -114,9 +103,7 @@ public class NewReceipientManager : MonoBehaviour
 
     public void CheckIfPackageAndReceipientTheSame()
     {
-        showResult = false;
         Dialogue_NPC dlog = dialogueBox.GetComponent<Dialogue_NPC>();
-        //Debug.Log($"Checker: {checker}");
 
         PlayerManagement playManage = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManagement>();
 
@@ -134,14 +121,12 @@ public class NewReceipientManager : MonoBehaviour
                 playManage.SetMoneySatus(moneyGot);
                 
                 Debug.Log($"PLAYER GOT ${moneyGot}");
-                Debug.Log($"DESTROYED PACKAGE {package.GetComponent<PackageManager>().packageID} for RECEIPIENT {receipientID}");
+                //Debug.Log($"DESTROYED PACKAGE {package.GetComponent<PackageManager>().packageID} for RECEIPIENT {receipientID}");
                 break;
             }
         }
         Destroy(result);
         SoundManager.PlaySound(SoundType.DELIVERYCOMPLETE);
-        showResult = true;
     }
-
     
 }

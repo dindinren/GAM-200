@@ -69,9 +69,7 @@ public class PlayerPackageCheck : MonoBehaviour
             }
             Checker();
 
-
         }
-
     }
 
     public void DialogueWarn()

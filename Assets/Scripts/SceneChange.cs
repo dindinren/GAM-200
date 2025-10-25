@@ -4,15 +4,18 @@ using System.Collections;
 
 public class SceneChange : MonoBehaviour
 {
-    public string SceneName;
-    public GameObject player;
-
     public Animator transition;
+    public GameObject player;
+    public TimeManager timeManager;
+    [Header("-----------------------")]
+    public string SceneName;
+
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         transition = GameObject.Find("Canvas").GetComponentInChildren<Animator>();
+        timeManager = GameObject.Find("Canvas").GetComponentInChildren<TimeManager>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -22,8 +25,23 @@ public class SceneChange : MonoBehaviour
         {
             Checker();
             DontDestroyOnLoad(player);
+            //DontDestroyOnLoad(timeManager);
+
+            //time advancement
+            StartCoroutine(TimeAdvance());
+
         }
     }
+
+    IEnumerator TimeAdvance()
+    {
+        yield return new WaitForSeconds(1f);
+        timeManager.TimeAdvance();
+        Debug.Log("TIme has passed");
+
+    }
+
+    #region Transition
 
     IEnumerator LeftToRightTransit()
     {
@@ -33,7 +51,6 @@ public class SceneChange : MonoBehaviour
         yield return new WaitForSeconds(1);
         //load 
         SceneManager.LoadScene(SceneName);
-
     }
 
     IEnumerator RightToLeftTransit()
@@ -45,6 +62,8 @@ public class SceneChange : MonoBehaviour
         //load 
         SceneManager.LoadScene(SceneName);
     }
+
+    #endregion Transition
 
     void Checker()
     {

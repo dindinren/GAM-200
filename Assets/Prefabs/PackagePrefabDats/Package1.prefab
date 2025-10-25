@@ -150,6 +150,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   packageID: 1
   receipientName: Cindy
+  location: 
+  weight: 0
   packageHP: 2
   packageValue: 10
   packagePrefab: {fileID: 126773501268249066}

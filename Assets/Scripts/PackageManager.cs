@@ -6,36 +6,32 @@ public class PackageManager : MonoBehaviour
     [Header("PACKAGE DETAILS")]
     public int packageID;
     public string receipientName;
-    public int packageHP = 2;
-    public int packageValue; 
-    public GameObject packagePrefab;
+    public string location;
+    public float weight;
+    public int packageHP = 2; //how many times a package can handle damage
+    public int packageValue; //Money value of package
+    public GameObject packagePrefab; //Image of package
+
+
+
+
     [Header("Dont edit this")]
     public bool isSelected; // Add this field
-
-
+    bool package_floor_hit;
 
     bool isDragging = false;
     Vector3 offset;
     float zCoord;
-
-
-
-    //SpawnManager spawnManager;
     SpriteRenderer spriteRenderer;
-
-    //ConveyerBelt conveyer;
-    //GameObject belt;
 
     private void Awake()
     {
-        //belt = GameObject.FindGameObjectWithTag("Belt");
-        ////spawnManager = GameObject.Find("Canvas").GetComponent<SpawnManager>();
-        //conveyer = belt.GetComponent<ConveyerBelt>();
         spriteRenderer = GetComponent<SpriteRenderer>(); // Get this package's renderer
     }
 
     private void Start()
     {
+        weight = gameObject.GetComponent<Rigidbody2D>().mass;
     }
     void Update()
     {
@@ -60,16 +56,17 @@ public class PackageManager : MonoBehaviour
     private void OnMouseUp()
     {
         isDragging = false;
+        package_floor_hit = false;
     }
 
     void PackageHPColor()
     {
-        //var spriteRenderer = spawnManager.GetPackageClone().GetComponent<SpriteRenderer>();
         var lotsOfPackages = GameObject.FindGameObjectsWithTag("Package");
         foreach(var lot in lotsOfPackages)
         {
             var spriterender = lot.GetComponent<SpriteRenderer>();
         }
+
         switch (packageHP)
         {
             default:
@@ -90,26 +87,19 @@ public class PackageManager : MonoBehaviour
         return packageValue;
     }
 
-
-    //int GetPackageHP()
-    //{
-    //    return packageHP;
-    //}
-
     //if package hits the floor, change layer to default
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground") && package_floor_hit == false)
         {
             --packageHP;
 
-            this.gameObject.layer = LayerMask.NameToLayer("Default");
+            this.gameObject.layer = LayerMask.NameToLayer("Default"); //change it so it could be picked up again
 
-            ///change the package color 
-            PackageHPColor();
-
+            PackageHPColor(); 
             Debug.Log($"PACKAGE TOO DAMAGE! CURRENTLY AT {packageHP}");
-            
+
+            package_floor_hit = true;
         }
     }
 }

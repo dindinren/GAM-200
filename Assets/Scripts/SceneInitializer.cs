@@ -14,10 +14,4 @@ public class SceneInitializer : MonoBehaviour
 
     }
 
-
-    private void Start()
-    {
-    }
-
-
 }

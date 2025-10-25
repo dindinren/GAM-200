@@ -84,7 +84,8 @@ public class PlayerManagement : MonoBehaviour
             rb.AddForce(new Vector3(rb.linearVelocityY,jumpForce));
             foreach (GameObject pack in PackageMove.GetAttachedPackagesList())
             {
-                if (pack.CompareTag("Package"))
+                Debug.Log($"packages carried are: {pack}");
+                if (pack.gameObject.tag == "Package")
                 {
                     Rigidbody2D rb2 = pack.GetComponent<Rigidbody2D>();
                     rb2.AddForceX(50, ForceMode2D.Force);
@@ -102,11 +103,11 @@ public class PlayerManagement : MonoBehaviour
         }
     }
 
-    private IEnumerator DelayTriggerAreaOff()
-    {
-        yield return new WaitForSeconds(0.2f);
-        packageTriggerArea.SetActive(false);
-    }
+    //private IEnumerator DelayTriggerAreaOff()
+    //{
+    //    yield return new WaitForSeconds(0.2f);
+    //    packageTriggerArea.SetActive(false);
+    //}
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -123,7 +124,7 @@ public class PlayerManagement : MonoBehaviour
         {
             interactionButton.SetActive(true);
         }
-        Debug.Log("SHOW F");
+        //Debug.Log("SHOW F");
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

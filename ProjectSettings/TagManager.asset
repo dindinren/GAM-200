@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - Belt
   - Receipient
+  - SceneSwitch
   layers:
   - Default
   - TransparentFX
