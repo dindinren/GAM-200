@@ -300,6 +300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueBox: {fileID: 4809287257765405978}
   lines:
+  - Wait...
   - I can't leave without the packages...
   text: {fileID: 7730437272523407973}
-  textSpeed: 0.05
+  textSpeed: 0.03

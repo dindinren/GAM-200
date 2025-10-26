@@ -120,15 +120,15 @@ public class PlayerManagement : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Receipient")
+        if (collision.gameObject.tag == "Receipient" || (collision.gameObject.tag == "Shelf" && WarehouseSpawnManager.playerReadyToGo == false) )
         {
             interactionButton.SetActive(true);
+            Debug.Log("SHOW F");
         }
-        //Debug.Log("SHOW F");
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Receipient")
+        if (collision.gameObject.tag == "Receipient" || collision.gameObject.tag == "Shelf")
         {
             interactionButton.SetActive(false);
         }

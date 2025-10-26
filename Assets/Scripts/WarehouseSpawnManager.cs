@@ -7,6 +7,8 @@ public class WarehouseSpawnManager : MonoBehaviour
 {
     public GameObject clipboard;
     public GameObject player;
+    public GameObject playerInteractionButton;
+
 
     public Button proceedButton;
 
@@ -128,12 +130,13 @@ public class WarehouseSpawnManager : MonoBehaviour
             }
         }
 
-        //packagesPicked = true;
 
         playerReadyToGo = true;
         //Debug.Log($"ready bool: {playerReadyToGo}");
 
         player.GetComponent<PlayerManagement>().enabled = true;
+
+        playerInteractionButton.SetActive(false);
 
     }
 

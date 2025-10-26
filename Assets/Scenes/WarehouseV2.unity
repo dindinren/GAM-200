@@ -405,7 +405,7 @@ GameObject:
   - component: {fileID: 172963704}
   m_Layer: 0
   m_Name: AreaToChooseWhichPackagesToDeliver
-  m_TagString: Untagged
+  m_TagString: Shelf
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -454,7 +454,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.65, y: 1}
   m_EdgeRadius: 0
 --- !u!212 &172963702
 SpriteRenderer:
@@ -499,7 +499,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.7327044, g: 1, b: 0.9940447, a: 0.1764706}
   m_FlipX: 0
@@ -539,7 +539,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clipboard: {fileID: 1477979710}
-  proceedbutton: {fileID: 1626554249}
   player: {fileID: 73133198}
 --- !u!1 &429423883
 GameObject:
@@ -765,8 +764,6 @@ MonoBehaviour:
   SceneChangeTriggerArea: {fileID: 4130461311613453732}
   PackageMove: {fileID: 0}
   dialogueBox: {fileID: 1502065900}
-  player: {fileID: 0}
-  PackageTriggerArea: {fileID: 172963700}
 --- !u!1 &554845781
 GameObject:
   m_ObjectHideFlags: 0
@@ -2407,7 +2404,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1477979711
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2488,6 +2485,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clipboard: {fileID: 1477979710}
   player: {fileID: 73133198}
+  playerInteractionButton: {fileID: 1546436496}
   proceedButton: {fileID: 1626554250}
   selection: {fileID: 86105380}
   packageSpawnPoint: {fileID: 1965969209}
@@ -2505,6 +2503,11 @@ GameObject:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 422370889953304324, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
   m_PrefabInstance: {fileID: 3810482738976404533}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1546436496 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3023177799573538725, guid: d1e771ff8b21b4d479e52beeda644ab2, type: 3}
+  m_PrefabInstance: {fileID: 24145155}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &1568866557 stripped
 RectTransform:
@@ -2900,7 +2903,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -5
   m_Sprite: {fileID: 21300000, guid: b9ea8df64b46ff44c9803fa04c59633d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3518,6 +3521,18 @@ PrefabInstance:
     - target: {fileID: 422370889953304324, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864204076198608938, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
+      propertyPath: lines.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864204076198608938, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
+      propertyPath: 'lines.Array.data[1]'
+      value: bruh i wamlls jksdjfhdsfdskl
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864204076198608938, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
+      propertyPath: 'lines.Array.data[2]'
+      value: I can't leave without the packages...
       objectReference: {fileID: 0}
     - target: {fileID: 4809287257765405978, guid: 27978aedc5ba6c540a36fbe3ac65113d, type: 3}
       propertyPath: m_Name

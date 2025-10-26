@@ -6,7 +6,6 @@ public class TimeManager : MonoBehaviour
     public GameObject sceneSwitch; //everytime the player steps here it's one hour off
     public TextMeshProUGUI textComponent;
 
-    //[SerializeField] Canvas endRoundScreen;
     public static bool gameOngoing = true;
 
     int currentTime;
@@ -24,21 +23,10 @@ public class TimeManager : MonoBehaviour
     {
         if (gameOngoing)
         {
-            //elapsedTime += Time.deltaTime;
-            //if(elapsedTime > endTime)
-            //{
-            //    DayShiftEnd();
-            //}
-
             TimeManagement();
-
         }
     }
 
-    private void FixedUpdate()
-    {
-        
-    }
     public void TimeManagement()
     {
         if(startingTime == 0)
@@ -49,11 +37,10 @@ public class TimeManager : MonoBehaviour
         if(startingTime > 12)
         {
             startingTime = 1;
-            Debug.Log($"startingTime = {startingTime}");
+            //Debug.Log($"startingTime = {startingTime}");
         }
         string pm = "PM";
 
-        //int currentMin = min; 
         textComponent.text = string.Format("{0:00}:{1:00} {2}", startingTime, currentMin, pm);
     }
 
@@ -83,20 +70,7 @@ public class TimeManager : MonoBehaviour
             gameOngoing = true;
         }
 
-        Debug.Log($"gameOngoing = {gameOngoing}");
+        //Debug.Log($"gameOngoing = {gameOngoing}");
     }
-
-    
-
-
-
-
-
-    //public void DayShiftEnd()
-    //{
-    //    gameOngoing = false;
-    //    endRoundScreen.gameObject.SetActive(true);
-    //}
-
 }
 

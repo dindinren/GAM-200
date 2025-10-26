@@ -38,6 +38,7 @@ public class Dialogue_NPC : MonoBehaviour
     private bool playerChoose;
     bool F_is_Pressed;
     bool nextLinePls;
+    bool lineFinished;
 
     private void Awake()
     {
@@ -58,7 +59,6 @@ public class Dialogue_NPC : MonoBehaviour
 
         NPC_Checker();
 
-
         //Set the dialogue box to not show first
         dialogueBox.SetActive(false);
 
@@ -69,33 +69,25 @@ public class Dialogue_NPC : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             F_is_Pressed = true;
-            DialogueManager();
         }
         else
         {
             F_is_Pressed = false;
         }
+        DialogueManager();
 
     }
 
-    IEnumerator Delay_nextLinePls()
-    {
-        yield return new WaitForSeconds(0.01f);
-        nextLinePls = true;
-    }
 
-    IEnumerator Delay_PackageHandover()
-    {
-        packaageHandovered = true;
-        yield return new WaitForSeconds(0.01f);
-        packaageHandovered = false;
-    }
 
     void DialogueManager()
     {
-
         if (playerChoose == false && F_is_Pressed && dialogueEnded == false)
         {
+            Debug.Log($"nextLinePls: {nextLinePls}");
+
+            Debug.Log($"INDEX NO. {index}");
+
             if (nextLinePls)
             {
                 DialogueAdvance();
@@ -105,13 +97,10 @@ public class Dialogue_NPC : MonoBehaviour
             }
             else
             {
-                StartCoroutine(Delay_nextLinePls());
+                nextLinePls = true;
+                //StartCoroutine(Delay_nextLinePls());
                 Debug.Log("DELAY FINSIH");
             }
-            Debug.Log($"nextLinePls: {nextLinePls}");
-
-            Debug.Log($"INDEX NO. {index}");
-
         }
     }
 
@@ -133,7 +122,7 @@ public class Dialogue_NPC : MonoBehaviour
     #region Buttons
     public void ButtonAccept()
     {
-        index = acceptButtonIndexNumber-1;
+        index = acceptButtonIndexNumber - 1;
         NPC_Checker();
         NextLine();
         NPC_Checker();
@@ -148,8 +137,9 @@ public class Dialogue_NPC : MonoBehaviour
     }
     public void ButtonExit()
     {
-        index = exitButtonIndexNumber;
-        DialogueAdvance();
+        index = exitButtonIndexNumber - 1;
+        NPC_Checker();
+        NextLine();
         NPC_Checker();
 
         playerChoose = false;
@@ -185,7 +175,14 @@ public class Dialogue_NPC : MonoBehaviour
             NPCPP.SetActive(false);
             text.alignment = TextAlignmentOptions.TopLeft;
 
-            StartCoroutine(Delay_PackageHandover());
+            packaageHandovered = true;
+            //StartCoroutine(Delay_PackageHandover());
+        }
+        else if (index == acceptButtonIndexNumber + 1)
+        {
+            packaageHandovered = false;
+            playerPP.SetActive(false);
+            NPCPP.SetActive(true);
         }
 
         else
@@ -212,6 +209,7 @@ public class Dialogue_NPC : MonoBehaviour
         StartCoroutine(TypeLine());
         
         dialogueEnded = false;
+        nextLinePls = true;
 
         Debug.Log("DIALOGUE HAS BEEN STARTED");
     }

@@ -31,7 +31,7 @@ public class NewReceipientManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        //playerCount = 0;
     }
 
     // Update is called once per frame
@@ -39,50 +39,53 @@ public class NewReceipientManager : MonoBehaviour
     {
         //Debug.Log($"checker number: {checker}");
         //Debug.Log($"dialogueended:{Dialogue_NPC.dialogueEnded}");
-        if (dialogueBox.GetComponent<Dialogue_NPC>().packaageHandovered == true)
-        {
-            CheckIfPackageAndReceipientTheSame();
-
-            Debug.Log("PACKAGE HANDOVERR");
-            //checker += 1;
-        }
+        
         if(Dialogue_NPC.dialogueEnded == true)
         {
             playerManagement.enabled = true;
         }
 
+        if (dialogueBox.GetComponent<Dialogue_NPC>().packaageHandovered == true)
+        {
+            CheckIfPackageAndReceipientTheSame();
+
+            //Debug.Log("PACKAGE HANDOVERR");
+        }
+
+    }
+    private void FixedUpdate()
+    {
+        if (Input.GetKey(KeyCode.F))
+        {
+            F_is_Pressed = true;
+
+        }
+        else
+        {
+            F_is_Pressed = false;
+        }
+        DialogueSTART();
+
     }
 
-   void DialogueSTART()
+
+    void DialogueSTART()
     {
         if (playerIsNear && F_is_Pressed && playerCount == 0)
         {
+            Debug.Log($"PlayerCount = {playerCount}");
+
             if (dialogueBox.GetComponent<Dialogue_NPC>().dialogue_ID == receipientID)
             {
                 dialogueBox.SetActive(true);
                 dialogueBox.GetComponent<Dialogue_NPC>().StartDialogue();
                 playerCount++;
-                //StartCoroutine(Delay_playerCount());
-
                 Debug.Log($"PlayerCount = {playerCount}");
             }
 
         }
     }
 
-    private void FixedUpdate()
-    {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            F_is_Pressed = true;
-            DialogueSTART();
-
-        }
-        else
-        {
-            F_is_Pressed = false;
-        }   
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -92,13 +95,14 @@ public class NewReceipientManager : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         playerIsNear = false;
+        Dialogue_NPC.dialogueEnded = false;
         playerCount = 1;
     }
 
-    public int returnReceipientID()
-    {
-        return receipientID;
-    }
+    //public int returnReceipientID()
+    //{
+    //    return receipientID;
+    //}
 
 
     public void CheckIfPackageAndReceipientTheSame()
@@ -111,7 +115,7 @@ public class NewReceipientManager : MonoBehaviour
         GameObject result = null;
         foreach(GameObject package in packMov.GetAttachedPackagesList())
         {
-            if (receipientID == package.GetComponent<PackageManager>().packageID && dlog.packaageHandovered == true)
+            if (receipientID == package.GetComponent<PackageManager>().packageID)
             {
                 completed = true;
                 result = package;

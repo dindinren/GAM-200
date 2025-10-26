@@ -26,7 +26,7 @@ public class SceneChange : MonoBehaviour
             Checker();
             DontDestroyOnLoad(player);
             //DontDestroyOnLoad(timeManager);
-
+            
             //time advancement
             StartCoroutine(TimeAdvance());
 
@@ -38,7 +38,6 @@ public class SceneChange : MonoBehaviour
         yield return new WaitForSeconds(1f);
         timeManager.TimeAdvance();
         Debug.Log("TIme has passed");
-
     }
 
     #region Transition
@@ -64,7 +63,7 @@ public class SceneChange : MonoBehaviour
     }
 
     #endregion Transition
-
+    
     void Checker()
     {
         switch (SceneManager.GetActiveScene().name)

@@ -10,6 +10,7 @@ TagManager:
   - Belt
   - Receipient
   - SceneSwitch
+  - Shelf
   layers:
   - Default
   - TransparentFX
@@ -46,12 +47,6 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Background
-    uniqueID: 627951267
-    locked: 0
-  - name: Foreground
-    uniqueID: 3406273975
     locked: 0
   m_RenderingLayers:
   - Default
