@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 public class PlayerManagement : MonoBehaviour
 {
     public GameObject player;
+    public Animator anim;
     public GameObject interactionButton;
     public GameObject packageTriggerArea;
 
@@ -16,21 +17,20 @@ public class PlayerManagement : MonoBehaviour
     public int money;
 
 
+
     private void Awake()
     {
         if(PackageMove == null)
         {
             PackageMove = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PackageMove>();
         }
+        anim = player.GetComponent<Animator>();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         packageTriggerArea.SetActive(true);
         interactionButton.SetActive(false);
-
-        ///temp placement of music
-        SoundManager.PlayBGM(BGM.MENU);
     }
 
     // Update is called once per frame
@@ -58,18 +58,26 @@ public class PlayerManagement : MonoBehaviour
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         SpriteRenderer spriteFlip = player.GetComponent<SpriteRenderer>();
 
-        Vector3 movement = new Vector3(horizontalInput, 0, 0);
-        transform.Translate(movement *  speed * Time.deltaTime);
 
         ///flip the sprite
-        if(horizontalInput < 0)
+        if(horizontalInput < 0) 
         {
             spriteFlip.flipX = true;
+            anim.SetBool("Walk", true);
         }
-        else
+        if(horizontalInput > 0) 
         {
-            spriteFlip.flipX= false;
+            spriteFlip.flipX = false;
+            anim.SetBool("Walk", true);
         }
+        if(horizontalInput == 0)
+        {
+            anim.SetBool("Walk", false);
+        }
+
+        Vector3 movement = new Vector3(horizontalInput, 0, 0);
+        transform.Translate(movement * speed * Time.deltaTime);
+        
 
         Jump();
 
@@ -81,9 +89,9 @@ public class PlayerManagement : MonoBehaviour
         ///JUMP
         if (Input.GetKeyDown(KeyCode.Space) && touchingFloor == true)
         {
-            rb.AddForce(new Vector3(rb.linearVelocityY,jumpForce));
             foreach (GameObject pack in PackageMove.GetAttachedPackagesList())
             {
+                rb.AddForce(new Vector3(rb.linearVelocityY, jumpForce));
                 Debug.Log($"packages carried are: {pack}");
                 if (pack.gameObject.tag == "Package")
                 {

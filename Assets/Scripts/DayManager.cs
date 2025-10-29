@@ -77,6 +77,7 @@ public class DayManager : MonoBehaviour
     IEnumerator PlayResultScreen()
     {
         completedScreen.SetActive(true);
+        SoundManager.PlaySound(SoundType.DAYCOMPLETE, 0.5f);
         yield return new WaitForSeconds(1);
         PlayerPerformanceResult();
         yield return new WaitForSeconds(0.1f);

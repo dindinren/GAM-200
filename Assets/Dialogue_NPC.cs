@@ -6,9 +6,12 @@ using UnityEngine.UI;
 
 public class Dialogue_NPC : MonoBehaviour
 {
+    public GameObject dialogueBox_player;
+    public GameObject dialogueBox_NPC;
     public GameObject dialogueBox;
     //public List<NewReceipientManager> receipientsManager;
     private PackageMove packMov;
+    //public static Dialogue_NPC instance;
 
     [Header("LINES")]
     public string[] lines;
@@ -52,6 +55,15 @@ public class Dialogue_NPC : MonoBehaviour
     }
     private void Start()
     {
+        //if (instance != null /*&& instance != this*/)
+        //{
+        //    Destroy(gameObject); // Destroy duplicate instances
+        //}
+        //else
+        //{
+        //    instance = this;
+        //}
+
         playerChoose = false;
         dialogueEnded = false;
         packaageHandovered = false;
@@ -61,6 +73,8 @@ public class Dialogue_NPC : MonoBehaviour
 
         //Set the dialogue box to not show first
         dialogueBox.SetActive(false);
+
+        
 
     }
 
@@ -127,6 +141,9 @@ public class Dialogue_NPC : MonoBehaviour
         NextLine();
         NPC_Checker();
 
+        dialogueBox_NPC.SetActive(false);
+        dialogueBox_player.SetActive(true);
+        
         packageAccept.gameObject.SetActive(false);
         exit.gameObject.SetActive(false);
 
@@ -148,6 +165,7 @@ public class Dialogue_NPC : MonoBehaviour
 
     public void NPC_Checker()
     {
+        
         if (index == interactionChooseIndexNumber)
         { 
             foreach (GameObject p in packMov.GetAttachedPackagesList())
@@ -173,6 +191,10 @@ public class Dialogue_NPC : MonoBehaviour
         {
             playerPP.SetActive(true);
             NPCPP.SetActive(false);
+
+            dialogueBox_player.SetActive(false);
+            dialogueBox_NPC.SetActive(true);
+
             text.alignment = TextAlignmentOptions.TopLeft;
 
             packaageHandovered = true;
@@ -181,12 +203,22 @@ public class Dialogue_NPC : MonoBehaviour
         else if (index == acceptButtonIndexNumber + 1)
         {
             packaageHandovered = false;
+
             playerPP.SetActive(false);
             NPCPP.SetActive(true);
+
+            dialogueBox_player.SetActive(false);
+            dialogueBox_NPC.SetActive(true);
+
+            text.alignment = TextAlignmentOptions.TopRight;
+
         }
 
         else
         {
+            dialogueBox_player.SetActive(false);
+            dialogueBox_NPC.SetActive(true);
+
             packageAccept.gameObject.SetActive(false);
             exit.gameObject.SetActive(false);
 
@@ -198,9 +230,6 @@ public class Dialogue_NPC : MonoBehaviour
         }
 
     }
-
-
-
     public void StartDialogue()
     {
         text.text = string.Empty;

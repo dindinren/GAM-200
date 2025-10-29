@@ -12,22 +12,22 @@ public class PlayerPackageCheck : MonoBehaviour
     public PackageMove PackageMove;
 
     public GameObject dialogueBox;
-    //public PlayerManagement player;
+    public PlayerManagement player;
 
     ///very specific bug fix that prob have a better fix but i too lazy
     //public GameObject PackageTriggerArea;
 
-    int count;
+    //int count;
 
     private void Awake()
     {
         PackageMove = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PackageMove>();
-        //player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManagement>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManagement>();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        count = 0;
+        Dialogue.count = 0;
 
         SceneChangeTriggerArea.SetActive(false);
         invisibleWall.SetActive(true);
@@ -35,32 +35,29 @@ public class PlayerPackageCheck : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //if (PackageMove.GetAttachedPackagesList().Count != WarehouseSpawnManager.requiredNumber)
-        //{
-        //    if (Dialogue.dialogueEnded) //idk if this will fuck up the framw rate im sorry
-        //    {
-        //        Debug.Log("DIALOGUE ENDED");
-        //        //player can move again
-        //        //player.enabled = true;
-
-        //        //PackageTriggerArea.layer = LayerMask.NameToLayer("Default");     //allow player to interact with the PackageTriggerArea
-        //    }
-            
-        //}
-        //if(Dialogue.dialogueEnded == false)
-        //{
-        //}
+        if (Dialogue.dialogueEnded)
+        {
+            player.enabled = true;
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        Checker();
+
+        if (PackageMove.GetAttachedPackagesList().Count != WarehouseSpawnManager.requiredNumber)
         {
-            if (PackageMove.GetAttachedPackagesList().Count != WarehouseSpawnManager.requiredNumber && Dialogue.dialogueEnded == false)
+            if (collision.gameObject.tag == "Player" && Dialogue.count == 0)
             {
-                DialogueWarn();  
+                player.enabled = false;
+                DialogueWarn();
+                Dialogue.count++;
             }
-            Checker();
         }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        //Dialogue.dialogueEnded = false;
+        Dialogue.count = 0;
     }
     public void Checker()
     {
@@ -76,13 +73,20 @@ public class PlayerPackageCheck : MonoBehaviour
     {
         //PackageTriggerArea.layer = LayerMask.NameToLayer("Ignore Raycast");         //Set the PackageTriggerArea to ignore raycast until finish
 
-        dialogueBox.SetActive(true);
-
-        Dialogue dlog = dialogueBox.GetComponent<Dialogue>();
-        dlog.DialogueAppear();
-
         ////Disbale player movement
         //player.enabled = false;
+
+        Animator anim = player.GetComponent<Animator>();
+        anim.SetBool("Walk", false);
+
+        dialogueBox.SetActive(true);
+
+        if(Dialogue.count == 0)
+        {
+            Dialogue dlog = dialogueBox.GetComponent<Dialogue>();
+            dlog.DialogueAppear();
+        }
+
     }
 
 

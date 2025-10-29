@@ -14,8 +14,8 @@ public class SceneChange : MonoBehaviour
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        transition = GameObject.Find("Canvas").GetComponentInChildren<Animator>();
-        timeManager = GameObject.Find("Canvas").GetComponentInChildren<TimeManager>();
+        transition = GameObject.Find("CrossFade").GetComponent<Animator>();
+        timeManager = GameObject.Find("Parcel_UI_1").GetComponent<TimeManager>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -45,7 +45,7 @@ public class SceneChange : MonoBehaviour
     IEnumerator LeftToRightTransit()
     {
         //play the transition start
-        transition.Play("CrossFade_LeftToRight_Start");
+        transition.Play("CrossFade_LeftToRight_Start",0);
         //wait for a while
         yield return new WaitForSeconds(1);
         //load 

@@ -150,7 +150,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   packageID: 2
   receipientName: Emily
-  location: 
+  location: Bristle Town
+  description: Skibidi toilet sigma ohio 67
   weight: 0
   packageHP: 2
   packageValue: 15

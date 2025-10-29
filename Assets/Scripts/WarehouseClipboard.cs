@@ -3,6 +3,7 @@ using UnityEngine;
 public class WarehouseClipboard : MonoBehaviour
 {
     public GameObject clipboard;
+    public Animator clipboard_darkening;
     public GameObject player;
 
     bool key_Is_Pressed;
@@ -34,6 +35,7 @@ public class WarehouseClipboard : MonoBehaviour
         if (WarehouseSpawnManager.playerReadyToGo == false && playerNear)
         {
             clipboard.SetActive(true);
+            clipboard_darkening.Play("Clipboard_Darken_Start");
             player.GetComponent<PlayerManagement>().enabled = false; //locked the player in place
             //count++;
         }

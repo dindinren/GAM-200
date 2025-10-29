@@ -5,8 +5,8 @@ public class UIPanel1Manager : MonoBehaviour
 {
     [Header("PACKAGES_UI")]
     public TextMeshProUGUI packageAmtText;
-    [Header("WEIGTH_UI")]
-    public TextMeshProUGUI weightAmtText;
+    //[Header("WEIGTH_UI")]
+    //public TextMeshProUGUI weightAmtText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

@@ -5,32 +5,37 @@ using UnityEngine.UI;
 
 public class WarehouseSpawnManager : MonoBehaviour
 {
+    [Header("OBJECTS")]
     public GameObject clipboard;
+    public Animator clipboard_darkening;
     public GameObject player;
     public GameObject playerInteractionButton;
-
-
     public Button proceedButton;
-
     public Toggle selection;
+
+    [Header("POSITION")]
+    public Transform packageSpawnPoint;
+
+    [Header("LIST")]
     public static List<int> toSpawnPackages = new List<int>();
     private HashSet<int> selectedPackageIDs = new HashSet<int>();
-
-
-    public Transform packageSpawnPoint;
-    int index = 0;
-    //public bool packagesPicked;
-    public static int requiredNumber = 2;
-
-    public static bool playerReadyToGo;
-
-    [Header("DISPLAY DATA")]
-    public TextMeshProUGUI name;
-    public TextMeshProUGUI reward;
 
     [Header("PACKAGES DATA")]
     //public List<PackageData> packages; ///with Scriptable Objects
     public List<PackageManager> packages; //with prefab gameobjects
+
+    [Header("DISPLAY DATA")]
+    public TextMeshProUGUI name;
+    public TextMeshProUGUI reward;
+    public TextMeshProUGUI description;
+    public TextMeshProUGUI location;
+
+    [Header("-----------------------------------")]
+    public static int requiredNumber = 2; //in the future if theres a level mamager change this accordingly
+    public static bool playerReadyToGo;
+
+
+    int index = 0; 
 
     void Awake()
     {
@@ -90,8 +95,10 @@ public class WarehouseSpawnManager : MonoBehaviour
 
         ///Doing without Scriptable Objects
         name.text = packages[index].receipientName;
-        reward.text = $"Reward: ${packages[index].packageValue.ToString()}";
+        reward.text = $"<b>Reward: </b>${packages[index].packageValue.ToString()}";
         selection.isOn = selectedPackageIDs.Contains(packages[index].packageID);
+        description.text = packages[index].description;
+        location.text = packages[index].location;
 
     }
 
@@ -118,7 +125,7 @@ public class WarehouseSpawnManager : MonoBehaviour
     public void FinishButton()
     {
         clipboard.SetActive(false);
-
+        clipboard_darkening.Play("Clipboard_Darken_End");
         // Spawn only the selected packages
         foreach (int packageID in toSpawnPackages)
         {
@@ -166,7 +173,7 @@ public class WarehouseSpawnManager : MonoBehaviour
         packageComponent.packageID  = packageData.packageID;
         packageComponent.packageHP = packageData.packageHP;
         packageComponent.packageValue = packageData.packageValue;
-
+  
         //Debug.Log($"Spawned packageID of  {packageComponent.packageID} with value ${packageComponent.packageValue} and HP of {packageComponent.packageHP} and type {packageComponent.packagePrefab}");
     }
 

@@ -7,6 +7,7 @@ public class TransitionUponLoad : MonoBehaviour
     private void Awake()
     {
         transition = GetComponent<Animator>();
+        transition.Play("CrossFade_Default");
         Checker();
     }
     void Checker()

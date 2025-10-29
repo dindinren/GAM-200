@@ -51,11 +51,8 @@ public class SoundManager : MonoBehaviour
     public static void PlayBGM(BGM bgm, float volume = 1)
     {
         AudioClip[] clips = instance.bgmLists[(int)bgm].BGMs;
-
         AudioClip randomClip = clips[UnityEngine.Random.Range(0, clips.Length)];
-
         instance.bgmSource.PlayOneShot(randomClip, volume);
-
     }
 
 
@@ -86,7 +83,7 @@ public struct SoundList
     public AudioClip[] Sounds { get => sounds; }
     [SerializeField] public string name;
     [SerializeField] private AudioClip[] sounds;
-
+    [SerializeField, Range(0, 1)] public float soundVolume;
 }
 [Serializable]
 public struct BGMList

@@ -7,6 +7,7 @@ public class PackageManager : MonoBehaviour
     public int packageID;
     public string receipientName;
     public string location;
+    public string description;
     public float weight;
     public int packageHP = 2; //how many times a package can handle damage
     public int packageValue; //Money value of package
