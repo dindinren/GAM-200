@@ -92,10 +92,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueBox: {fileID: 6881898474898022598}
+  continueButton: {fileID: 8421296614213339438}
   lines:
-  - Wait...
-  - bruh i wamlls jksdjfhdsfdskl
-  - I can't leave without the packages...
+  - I should go the other way for now
   text: {fileID: 3594313845016649625}
   textSpeed: 0.03
 --- !u!1 &7029622909267071248

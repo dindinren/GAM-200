@@ -85,18 +85,22 @@ public class PlayerManagement : MonoBehaviour
 
     void Jump()
     {
-        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
         ///JUMP
         if (Input.GetKeyDown(KeyCode.Space) && touchingFloor == true)
         {
+
             foreach (GameObject pack in PackageMove.GetAttachedPackagesList())
             {
+                Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
                 rb.AddForce(new Vector3(rb.linearVelocityY, jumpForce));
-                Debug.Log($"packages carried are: {pack}");
+
+                //Debug.Log($"packages carried are: {pack}");
                 if (pack.gameObject.tag == "Package")
                 {
                     Rigidbody2D rb2 = pack.GetComponent<Rigidbody2D>();
                     rb2.AddForceX(50, ForceMode2D.Force);
+                    rb2.AddForceY(10, ForceMode2D.Force);
+                    Debug.Log("ADDED FORCE TO PACKAGE!!!!!!");
                 }
             }
 
@@ -131,7 +135,7 @@ public class PlayerManagement : MonoBehaviour
         if (collision.gameObject.tag == "Receipient" || (collision.gameObject.tag == "Shelf" && WarehouseSpawnManager.playerReadyToGo == false) )
         {
             interactionButton.SetActive(true);
-            Debug.Log("SHOW F");
+            //Debug.Log("SHOW F");
         }
     }
     private void OnTriggerExit2D(Collider2D collision)

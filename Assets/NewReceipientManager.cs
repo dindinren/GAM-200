@@ -14,7 +14,7 @@ public class NewReceipientManager : MonoBehaviour
     public static bool showResult;
     bool playerIsNear = false;
     int playerCount = 0;
-    bool F_is_Pressed;
+    bool key_is_Pressed;
     
 
     [Header("RECEIPIENT DATA")]
@@ -57,32 +57,62 @@ public class NewReceipientManager : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.F))
         {
-            F_is_Pressed = true;
+            key_is_Pressed = true;
 
         }
         else
         {
-            F_is_Pressed = false;
+            key_is_Pressed = false;
         }
+
         DialogueSTART();
 
     }
 
 
-    void DialogueSTART()
+    public void DialogueSTART()
     {
-        if (playerIsNear && F_is_Pressed && playerCount == 0)
+        if(playerIsNear && key_is_Pressed)
         {
-            Debug.Log($"PlayerCount = {playerCount}");
-
-            if (dialogueBox.GetComponent<Dialogue_NPC>().dialogue_ID == receipientID)
+            if(Dialogue_NPC.count == 0 && playerCount == 0)
             {
-                dialogueBox.SetActive(true);
-                dialogueBox.GetComponent<Dialogue_NPC>().StartDialogue();
+                DialogBox();
+                Dialogue_NPC.count++;
+                Debug.Log($"DialogueCount: {Dialogue_NPC.count}");
+
+                Dialogue_NPC.spawned = true;
+  
                 playerCount++;
-                Debug.Log($"PlayerCount = {playerCount}");
+
             }
 
+            //if(Dialogue_NPC.)
+        }
+
+    //    if (playerIsNear && F_is_Pressed && playerCount == 0)
+    //    {
+    //        Debug.Log($"PlayerCount = {playerCount}");
+
+    //        if (dialogueBox.GetComponent<Dialogue_NPC>().dialogue_ID == receipientID)
+    //        {
+    //            dialogueBox.SetActive(true);
+    //            dialogueBox.GetComponent<Dialogue_NPC>().StartDialogue();
+    //            playerCount++;
+    //            Debug.Log($"PlayerCount = {playerCount}");
+    //        }
+
+    //    }
+    }
+    void DialogBox()
+    {
+        playerManagement.enabled = false;
+
+        dialogueBox.SetActive(true);
+
+        if (Dialogue_NPC.count == 0)
+        {
+            Dialogue_NPC dlog = dialogueBox.GetComponent<Dialogue_NPC>();
+            dlog.DialogueAppear();
         }
     }
 
@@ -90,19 +120,19 @@ public class NewReceipientManager : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         playerIsNear = true;
+
         playerCount = 0;
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         playerIsNear = false;
-        Dialogue_NPC.dialogueEnded = false;
+
+        Dialogue_NPC.count = 0;
+        Dialogue_NPC.spawned = false;
+        Dialogue_NPC.dialogueEnded = false; //just in case for reset idk
+        
         playerCount = 1;
     }
-
-    //public int returnReceipientID()
-    //{
-    //    return receipientID;
-    //}
 
 
     public void CheckIfPackageAndReceipientTheSame()

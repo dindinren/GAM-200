@@ -48,7 +48,7 @@ public class WarehouseClipboard : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         playerNear = true;
-        Debug.Log("player is near");
+        //Debug.Log("player is near");
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

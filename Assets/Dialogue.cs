@@ -2,6 +2,9 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using TMPro;
+using UnityEngine.Rendering;
+using System.Runtime.CompilerServices;
+using UnityEditor.Searcher;
 
 public class Dialogue : MonoBehaviour
 {
@@ -19,6 +22,7 @@ public class Dialogue : MonoBehaviour
     public static int count;
 
     public static bool dialogueEnded;
+    public static bool spawned;
     bool key_Is_Pressed;
     int keyPresses;
 
@@ -28,8 +32,8 @@ public class Dialogue : MonoBehaviour
     }
     private void Start()
     {
-
         dialogueEnded = false;
+        spawned = false;
 
         count = 0;
 
@@ -40,17 +44,24 @@ public class Dialogue : MonoBehaviour
     }
     private void Update()
     {
-        
 
     }
 
     private void FixedUpdate()
     {
+        if (text.text == lines[index])
+        {
+            continueButton.SetActive(true);
+        }
+        else
+        {
+            continueButton.SetActive(false);
+        }
+
         if (Input.GetKeyDown(KeyCode.F))
         {
             key_Is_Pressed = true;
             keyPresses++;
-            Advance();
         }
         else
         {
@@ -58,30 +69,26 @@ public class Dialogue : MonoBehaviour
             keyPresses = 0;
         }
 
+
+        Advance();
     }
 
     void Advance()
     {
-        //Advance to the next line
         if (key_Is_Pressed && keyPresses == 1)
         {
             if (text.text == lines[index])
             {
-                continueButton.SetActive(true);
                 NextLine();
+                Debug.Log($"index: {index}");
+                Debug.Log($"count: {count}");
             }
             else
             {
                 StopAllCoroutines();
-                //get the current line
-                text.text = lines[index];
-                continueButton.SetActive(true);
+                text.text = lines[index]; //get the current line
             }
-
-            Debug.Log($"index: {index}");
-
         }
-
 
     }
     public void DialogueAppear()
@@ -91,35 +98,39 @@ public class Dialogue : MonoBehaviour
     }
     void StartDialogue()
     {
-        if(count == 0)
+        if (!spawned)
         {
-            dialogueEnded = false;
+            if (count == 0)
+            {
+                dialogueEnded = false;
+                index = 0;
 
-            index = 0;
+                StartCoroutine(TypeLine());
 
-            StartCoroutine(TypeLine());
+            }
         }
 
         Debug.Log($"Dialogue Count: {Dialogue.count}");
-
+        Debug.Log($"DIALOGUE SPAWNED {spawned}");
     }
 
     IEnumerator TypeLine()
     {
-        //lines[index] = string.Empty;
         text.text = string.Empty;
         foreach (char c in lines[index].ToCharArray())
         {
             text.text += c;
             yield return new WaitForSeconds(textSpeed);
         }
+        continueButton.SetActive(true);
     }
 
     void NextLine()
     {
-        if(index < lines.Length - 1)
+        if(index < lines.Length - 1 && dialogueEnded == false)
         {
             StopAllCoroutines();
+
             continueButton.SetActive(false);
 
             index++;
@@ -129,9 +140,8 @@ public class Dialogue : MonoBehaviour
         else
         {
             dialogueEnded = true;
-
             dialogueBox.SetActive(false);
-            continueButton.SetActive(false);
+            count = 0;
         }
     }
 

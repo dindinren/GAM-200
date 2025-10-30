@@ -13,6 +13,7 @@ public class PlayerPackageCheck : MonoBehaviour
 
     public GameObject dialogueBox;
     public PlayerManagement player;
+    public PackageMove packMov;
 
     ///very specific bug fix that prob have a better fix but i too lazy
     //public GameObject PackageTriggerArea;
@@ -23,6 +24,7 @@ public class PlayerPackageCheck : MonoBehaviour
     {
         PackageMove = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PackageMove>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManagement>();
+        packMov = GameObject.FindGameObjectWithTag("Paddle").GetComponentInChildren<PackageMove>();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -38,6 +40,7 @@ public class PlayerPackageCheck : MonoBehaviour
         if (Dialogue.dialogueEnded)
         {
             player.enabled = true;
+            packMov.enabled = true;
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -48,9 +51,9 @@ public class PlayerPackageCheck : MonoBehaviour
         {
             if (collision.gameObject.tag == "Player" && Dialogue.count == 0)
             {
-                player.enabled = false;
                 DialogueWarn();
                 Dialogue.count++;
+                Dialogue.spawned = true;
             }
         }
     }
@@ -58,23 +61,24 @@ public class PlayerPackageCheck : MonoBehaviour
     {
         //Dialogue.dialogueEnded = false;
         Dialogue.count = 0;
+        Dialogue.spawned = false;
     }
     public void Checker()
     {
-        Debug.Log($"packages: {PackageMove.GetAttachedPackagesList().Count} and required: {WarehouseSpawnManager.requiredNumber}");
         if (PackageMove.GetAttachedPackagesList().Count == WarehouseSpawnManager.requiredNumber)
         {
             SceneChangeTriggerArea.SetActive(true);
             invisibleWall.SetActive(false);
         }
+        //Debug.Log($"packages: {PackageMove.GetAttachedPackagesList().Count} and required: {WarehouseSpawnManager.requiredNumber}");
     }
 
     public void DialogueWarn()
     {
         //PackageTriggerArea.layer = LayerMask.NameToLayer("Ignore Raycast");         //Set the PackageTriggerArea to ignore raycast until finish
 
-        ////Disbale player movement
-        //player.enabled = false;
+        player.enabled = false;         ////Disbale player movement
+        packMov.enabled = false;
 
         Animator anim = player.GetComponent<Animator>();
         anim.SetBool("Walk", false);

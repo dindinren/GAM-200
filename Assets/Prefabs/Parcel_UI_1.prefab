@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   packageAmtText: {fileID: 4693388267872859642}
+  moneyText: {fileID: 297150469390066136}
 --- !u!114 &7792115764801693031
 MonoBehaviour:
   m_ObjectHideFlags: 0

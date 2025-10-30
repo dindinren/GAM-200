@@ -5,6 +5,8 @@ public class UIPanel1Manager : MonoBehaviour
 {
     [Header("PACKAGES_UI")]
     public TextMeshProUGUI packageAmtText;
+    public TextMeshProUGUI moneyText;
+
     //[Header("WEIGTH_UI")]
     //public TextMeshProUGUI weightAmtText;
 
@@ -17,6 +19,11 @@ public class UIPanel1Manager : MonoBehaviour
     private void FixedUpdate()
     {
         PackagesToBeShown();
+
+        if (Dialogue_NPC.dialogueEnded)
+        {
+            ShowMeTheMoney();
+        }
     }
 
     //Packages Controller
@@ -34,6 +41,12 @@ public class UIPanel1Manager : MonoBehaviour
         {
             packageAmtText.text = "0";
         }
+    }
+
+    public void ShowMeTheMoney()
+    {
+        PlayerManagement playerManage = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManagement>();
+        moneyText.text = $"${playerManage.GetMoneySatus()}";
     }
 
     //Weight Controller
