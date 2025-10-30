@@ -9,6 +9,7 @@ public class SceneChange : MonoBehaviour
     public TimeManager timeManager;
     [Header("-----------------------")]
     public string SceneName;
+    public static bool changed;
 
 
     private void Awake()
@@ -16,6 +17,10 @@ public class SceneChange : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         transition = GameObject.Find("CrossFade").GetComponent<Animator>();
         timeManager = GameObject.Find("Parcel_UI_1").GetComponent<TimeManager>();
+    }
+    private void Start()
+    {
+        changed = false;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -29,6 +34,8 @@ public class SceneChange : MonoBehaviour
             
             //time advancement
             StartCoroutine(TimeAdvance());
+
+            changed = true;
 
         }
     }

@@ -110,6 +110,8 @@ public class WarehouseSpawnManager : MonoBehaviour
             index = 0;
         }
         SetPackagesData();
+
+        SoundManager.PlaySound(SoundType.PAGEFLIP);
     }
 
     public void BackButton()
@@ -120,6 +122,8 @@ public class WarehouseSpawnManager : MonoBehaviour
             index = packages.Count - 1;
         }
         SetPackagesData();
+
+        SoundManager.PlaySound(SoundType.PAGEFLIP);
     }
 
     public void FinishButton()
