@@ -11,7 +11,7 @@ public class SceneChange_MainMenu : MonoBehaviour
 
     private void Awake()
     {
-        transition = GameObject.Find("Canvas").GetComponentInChildren<Animator>();
+        //transition = GameObject.Find("Canvas").GetComponentInChildren<Animator>();
     }
     private void Start()
     {

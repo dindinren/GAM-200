@@ -94,8 +94,8 @@ public class WarehouseSpawnManager : MonoBehaviour
         //selection.isOn = selectedPackageIDs.Contains(packages[index].packageID);
 
         ///Doing without Scriptable Objects
-        name.text = packages[index].receipientName;
-        reward.text = $"<b>Reward: </b>${packages[index].packageValue.ToString()}";
+        name.text = $"<b>Name:</b>{packages[index].receipientName}";
+        reward.text = $"${packages[index].packageValue.ToString()}";
         selection.isOn = selectedPackageIDs.Contains(packages[index].packageID);
         description.text = packages[index].description;
         location.text = packages[index].location;

@@ -148,15 +148,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundList:
   - name: JUMP
-    sounds: []
-    soundVolume: 0
+    sounds:
+    - {fileID: 8300000, guid: 9de960c43295a0e46a30ffa3ed1ede80, type: 3}
+    soundVolume: 0.5
   - name: DELIVERYCOMPLETE
-    sounds: []
+    sounds:
+    - {fileID: 8300000, guid: 636ba2a3df71051429368e8cff759578, type: 3}
     soundVolume: 0.55
   - name: DAYCOMPLETE
     sounds:
     - {fileID: 8300000, guid: 8fcda75d21c42f840954a46cf50da06a, type: 3}
-    soundVolume: 0.3
+    soundVolume: 0.1
   - name: PARCELPICKUP
     sounds:
     - {fileID: 8300000, guid: c19601d21461846428adb50009cb3576, type: 3}
@@ -167,8 +169,6 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 60aaa6720adc24c4788333cfeb0ad622, type: 3}
     soundVolume: 0.7
   audioSource: {fileID: 4520679515980262983}
-  bgmSource: {fileID: 3348319561874721849}
-  ambianceSource: {fileID: 4584729014872918672}
 --- !u!82 &3348319561874721849
 AudioSource:
   m_ObjectHideFlags: 0

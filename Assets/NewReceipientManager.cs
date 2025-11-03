@@ -86,22 +86,9 @@ public class NewReceipientManager : MonoBehaviour
 
             }
 
-            //if(Dialogue_NPC.)
         }
 
-    //    if (playerIsNear && F_is_Pressed && playerCount == 0)
-    //    {
-    //        Debug.Log($"PlayerCount = {playerCount}");
 
-    //        if (dialogueBox.GetComponent<Dialogue_NPC>().dialogue_ID == receipientID)
-    //        {
-    //            dialogueBox.SetActive(true);
-    //            dialogueBox.GetComponent<Dialogue_NPC>().StartDialogue();
-    //            playerCount++;
-    //            Debug.Log($"PlayerCount = {playerCount}");
-    //        }
-
-    //    }
     }
     void DialogBox()
     {
@@ -160,7 +147,6 @@ public class NewReceipientManager : MonoBehaviour
             }
         }
         Destroy(result);
-        SoundManager.PlaySound(SoundType.DELIVERYCOMPLETE);
     }
     
 }

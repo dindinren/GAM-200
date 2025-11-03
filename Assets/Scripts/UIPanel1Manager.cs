@@ -7,12 +7,14 @@ public class UIPanel1Manager : MonoBehaviour
     public TextMeshProUGUI packageAmtText;
     public TextMeshProUGUI moneyText;
 
+
     //[Header("WEIGTH_UI")]
     //public TextMeshProUGUI weightAmtText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //deliveredPackages = 0;
     }
 
     // Update is called once per frame
@@ -30,7 +32,7 @@ public class UIPanel1Manager : MonoBehaviour
     public void PackagesToBeShown()
     {
         int count = WarehouseSpawnManager.toSpawnPackages.Count - DayManager.checker;
-
+        //deliveredPackages += 1;
         
         //After the player select finish
         if (WarehouseSpawnManager.playerReadyToGo == true)
@@ -42,6 +44,7 @@ public class UIPanel1Manager : MonoBehaviour
             packageAmtText.text = "0";
         }
     }
+
 
     public void ShowMeTheMoney()
     {

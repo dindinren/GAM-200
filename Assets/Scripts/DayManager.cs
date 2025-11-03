@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using TMPro;
 public class DayManager : MonoBehaviour
 {
     //Idealy it would keep track of different days 
@@ -9,8 +10,13 @@ public class DayManager : MonoBehaviour
     public PlayerManagement playerManger;
     [Header("SCREENS")]
     public GameObject completedScreen;
-    public GameObject fail;
-    public GameObject pass;
+    //public GameObject fail;
+    //public GameObject pass;
+    public Animator anim;
+
+    [Header("TEXT COMPONENTS")]
+    public TextMeshProUGUI money;
+    public TextMeshProUGUI packages;
 
     [Header("---------------")]
     public int requiredMoney;
@@ -20,13 +26,15 @@ public class DayManager : MonoBehaviour
 
     private int requiredNumber;
     private bool result_has_played;
-    bool key_is_pressed;
+    bool musicPlaying = false;
+    bool key_is_pressed = false;
 
 
     private void Awake()
     {
         NewReceipientManager = GameObject.FindGameObjectWithTag("Receipient").GetComponent<NewReceipientManager>();
         playerManger = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManagement>();
+
         requiredNumber = WarehouseSpawnManager.toSpawnPackages.Count;
         Debug.Log($"required num. {requiredNumber}");
 
@@ -34,8 +42,8 @@ public class DayManager : MonoBehaviour
     private void Start()
     {
         completedScreen.SetActive(false);
-        fail.SetActive(false);
-        pass.SetActive(false);
+        //fail.SetActive(false);
+        //pass.SetActive(false);
 
         result_has_played = false;
 
@@ -46,7 +54,6 @@ public class DayManager : MonoBehaviour
     {
         DayCompleted();
 
-
         if (Input.GetKeyDown(KeyCode.F) || Input.GetMouseButtonDown(0))
         {
             key_is_pressed = true;
@@ -55,6 +62,7 @@ public class DayManager : MonoBehaviour
         {
             key_is_pressed = false;
         }
+
     }
 
     /// <summary>
@@ -67,9 +75,12 @@ public class DayManager : MonoBehaviour
     {
         if(checker == requiredNumber || TimeManager.gameOngoing == false)
         {
-            if(Dialogue_NPC.dialogueEnded == true && result_has_played == false)
+            if(Dialogue_NPC.dialogueEnded == true && result_has_played == false && !musicPlaying)
             {
                 StartCoroutine(PlayResultScreen());
+                SoundManager.PlaySound(SoundType.DAYCOMPLETE);
+                MusicController.isPlaying = false;
+                musicPlaying = true;
             }
         }
     }
@@ -77,24 +88,35 @@ public class DayManager : MonoBehaviour
     IEnumerator PlayResultScreen()
     {
         completedScreen.SetActive(true);
-        SoundManager.PlaySound(SoundType.DAYCOMPLETE, 0.5f);
-        yield return new WaitForSeconds(1);
+        SoundManager.PlaySound(SoundType.DAYCOMPLETE);
+        yield return new WaitForSeconds(1.3f);
+
+        packages.gameObject.SetActive(true);
+        packages.text = checker.ToString();
+
+        yield return new WaitForSeconds(1.5f);
+        money.gameObject.SetActive(true);
+        money.text = $"${GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManagement>().GetMoneySatus().ToString()}";
+
+
+        yield return new WaitForSeconds(3);
         PlayerPerformanceResult();
+
         yield return new WaitForSeconds(0.1f);
         result_has_played = true;
     }
     
     void PlayerPerformanceResult()
     {
-        completedScreen.SetActive(false);
-
         if (playerManger.GetMoneySatus() >= requiredMoney)
         {
-            pass.SetActive(true);
+            anim.Play("ClipboardCompletedScreen_pass");
+            //pass.SetActive(true);
         }
         else 
         {
-            fail.SetActive(true);
+            anim.Play("ClipboardCompletedScreen_fail");
+            //fail.SetActive(true);
         }
     }
     

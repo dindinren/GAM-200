@@ -6,7 +6,7 @@ public class WarehouseClipboard : MonoBehaviour
     public Animator clipboard_darkening;
     public GameObject player;
 
-    bool key_Is_Pressed;
+    bool key_Is_Pressed = false;
     bool playerNear;
     //int count;
 
