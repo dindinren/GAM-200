@@ -74,7 +74,7 @@ public class NewReceipientManager : MonoBehaviour
     {
         if(playerIsNear && key_is_Pressed)
         {
-            if(Dialogue_NPC.count == 0 && playerCount == 0)
+            if(Dialogue_NPC.count == 0 && playerCount == 0 && !Dialogue_NPC.dialogueEnded)
             {
                 DialogBox();
                 Dialogue_NPC.count++;

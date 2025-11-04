@@ -7,7 +7,12 @@ public enum SoundType
     DELIVERYCOMPLETE,
     DAYCOMPLETE,
     PARCELPICKUP,
-    PAGEFLIP
+    PAGEFLIP,
+    SCRIBBLE,
+    QUOTA,
+    NPC_Noise,
+    PARCEL_GIVENOUT,
+    CLIPBOARD_STAMP
 }
 
 
@@ -52,6 +57,11 @@ public class SoundManager : MonoBehaviour
 
         instance.audioSource.PlayOneShot(randomClip, finalVolume);
 
+    }
+
+    public static void StopSound()
+    {
+        instance.audioSource.Stop();
     }
 
 #if UNITY_EDITOR //only applies if youre in the unity editor | to prevent errors?

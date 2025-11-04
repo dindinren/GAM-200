@@ -43,6 +43,7 @@ public class Dialogue_NPC : MonoBehaviour
     bool key_is_Pressed;
     int keyPresses;
     private int index;
+    public bool StopPlayingAudio;
 
     private void Awake()
     {
@@ -242,6 +243,7 @@ public class Dialogue_NPC : MonoBehaviour
     {
         foreach (char c in lines[index].ToCharArray())
         {
+            SoundManager.PlaySound(SoundType.NPC_Noise);
             text.text += c;
             yield return new WaitForSeconds(textSpeed);
         }

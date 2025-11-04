@@ -89,18 +89,20 @@ public class DayManager : MonoBehaviour
     {
         completedScreen.SetActive(true);
         SoundManager.PlaySound(SoundType.DAYCOMPLETE);
-        yield return new WaitForSeconds(1.3f);
+        yield return new WaitForSeconds(1.1f);
 
         packages.gameObject.SetActive(true);
         packages.text = checker.ToString();
+        SoundManager.PlaySound(SoundType.SCRIBBLE);
 
         yield return new WaitForSeconds(1.5f);
         money.gameObject.SetActive(true);
         money.text = $"${GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManagement>().GetMoneySatus().ToString()}";
-
+        SoundManager.PlaySound(SoundType.SCRIBBLE);
 
         yield return new WaitForSeconds(3);
         PlayerPerformanceResult();
+        SoundManager.PlaySound(SoundType.QUOTA);
 
         yield return new WaitForSeconds(0.1f);
         result_has_played = true;

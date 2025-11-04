@@ -158,7 +158,7 @@ MonoBehaviour:
   - name: DAYCOMPLETE
     sounds:
     - {fileID: 8300000, guid: 8fcda75d21c42f840954a46cf50da06a, type: 3}
-    soundVolume: 0.1
+    soundVolume: 0.3
   - name: PARCELPICKUP
     sounds:
     - {fileID: 8300000, guid: c19601d21461846428adb50009cb3576, type: 3}
@@ -168,6 +168,25 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 33ea4c4b268874f4d9bf22b8c8129ab3, type: 3}
     - {fileID: 8300000, guid: 60aaa6720adc24c4788333cfeb0ad622, type: 3}
     soundVolume: 0.7
+  - name: SCRIBBLE
+    sounds:
+    - {fileID: 8300000, guid: 9f395574698eea441a815ba51c8b0ae4, type: 3}
+    soundVolume: 0.7
+  - name: QUOTA
+    sounds:
+    - {fileID: 8300000, guid: ccbc72053ab93ae418cf085940f8c95d, type: 3}
+    soundVolume: 1
+  - name: NPC_Noise
+    sounds:
+    - {fileID: 8300000, guid: 2c8c1e91cece87844861cbda969588f4, type: 3}
+    soundVolume: 0.2
+  - name: PARCEL_GIVENOUT
+    sounds:
+    - {fileID: 8300000, guid: bc3a02d984b8ee645881dae93084e888, type: 3}
+    soundVolume: 0.5
+  - name: CLIPBOARD_STAMP
+    sounds: []
+    soundVolume: 0
   audioSource: {fileID: 4520679515980262983}
 --- !u!82 &3348319561874721849
 AudioSource:

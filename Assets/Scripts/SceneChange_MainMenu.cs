@@ -1,10 +1,15 @@
-using UnityEngine;
-using UnityEngine.SceneManagement;
+using System;
 using System.Collections;
+using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class SceneChange_MainMenu : MonoBehaviour
 {
     public Animator transition;
+    //public AudioSource bgmSource;
+    //public float volume;
+
     [Header("-----------------------")]
     public string SceneName;
 
@@ -15,10 +20,17 @@ public class SceneChange_MainMenu : MonoBehaviour
     }
     private void Start()
     {
+
+    }
+    private void Update()
+    {
+       // AudioFade();
     }
     public void StartGame()
     {
         StartCoroutine(RightToLeftTransit());
+        SceneChange.changed = true;
+        //changeScene = true;
     }
 
     #region Transition
@@ -45,17 +57,13 @@ public class SceneChange_MainMenu : MonoBehaviour
 
     #endregion Transition
 
-    //void Checker()
-    //{
-    //    switch (SceneManager.GetActiveScene().name)
-    //    {
 
-    //        case "WarehouseOutside":
-    //            StartCoroutine(RightToLeftTransit());
-    //            break;
-    //        case "WarehouseV2":
-    //            StartCoroutine(LeftToRightTransit());
-    //            break;
+    //void AudioFade()
+    //{
+    //    if (changeScene)
+    //    {
+    //        volume -= Time.deltaTime;
+    //        bgmSource.volume = volume;
     //    }
     //}
 

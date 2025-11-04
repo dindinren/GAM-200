@@ -140,6 +140,7 @@ public class WarehouseSpawnManager : MonoBehaviour
                 SpawnPackageWithData(packageData);
             }
         }
+        SoundManager.PlaySound(SoundType.PARCEL_GIVENOUT);
 
 
         playerReadyToGo = true;

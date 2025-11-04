@@ -1290,6 +1290,7 @@ MonoBehaviour:
   text: {fileID: 1222429379}
   textSpeed: 0.01
   packaageHandovered: 0
+  StopPlayingAudio: 1
 --- !u!1 &481875898
 GameObject:
   m_ObjectHideFlags: 0
@@ -4475,21 +4476,49 @@ PrefabInstance:
       value: PAGEFLIP
       objectReference: {fileID: 0}
     - target: {fileID: 3101696775849769175, guid: c467b339e8ba5b5418a02c30c0ba9ed3, type: 3}
+      propertyPath: soundList.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3101696775849769175, guid: c467b339e8ba5b5418a02c30c0ba9ed3, type: 3}
       propertyPath: ambianceLists.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3101696775849769175, guid: c467b339e8ba5b5418a02c30c0ba9ed3, type: 3}
+      propertyPath: soundList.Array.data[6].name
+      value: QUOTA
       objectReference: {fileID: 0}
     - target: {fileID: 3101696775849769175, guid: c467b339e8ba5b5418a02c30c0ba9ed3, type: 3}
       propertyPath: ambianceLists.Array.data[0].name
       value: WAREHOUSEAMBIANCE
       objectReference: {fileID: 0}
     - target: {fileID: 3101696775849769175, guid: c467b339e8ba5b5418a02c30c0ba9ed3, type: 3}
+      propertyPath: soundList.Array.data[6].soundVolume
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3101696775849769175, guid: c467b339e8ba5b5418a02c30c0ba9ed3, type: 3}
+      propertyPath: soundList.Array.data[7].soundVolume
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3101696775849769175, guid: c467b339e8ba5b5418a02c30c0ba9ed3, type: 3}
       propertyPath: soundList.Array.data[1].sounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3101696775849769175, guid: c467b339e8ba5b5418a02c30c0ba9ed3, type: 3}
+      propertyPath: soundList.Array.data[6].sounds.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3101696775849769175, guid: c467b339e8ba5b5418a02c30c0ba9ed3, type: 3}
       propertyPath: 'soundList.Array.data[1].sounds.Array.data[0]'
       value: 
       objectReference: {fileID: 8300000, guid: 636ba2a3df71051429368e8cff759578, type: 3}
+    - target: {fileID: 3101696775849769175, guid: c467b339e8ba5b5418a02c30c0ba9ed3, type: 3}
+      propertyPath: 'soundList.Array.data[6].sounds.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: ccbc72053ab93ae418cf085940f8c95d, type: 3}
+    - target: {fileID: 3101696775849769175, guid: c467b339e8ba5b5418a02c30c0ba9ed3, type: 3}
+      propertyPath: 'soundList.Array.data[7].sounds.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 2c8c1e91cece87844861cbda969588f4, type: 3}
     - target: {fileID: 4024107425946321874, guid: c467b339e8ba5b5418a02c30c0ba9ed3, type: 3}
       propertyPath: m_Name
       value: SoundManager
@@ -4858,6 +4887,7 @@ MonoBehaviour:
   text: {fileID: 964942158}
   textSpeed: 0.01
   packaageHandovered: 0
+  StopPlayingAudio: 0
 --- !u!1001 &1631774051
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7065,6 +7095,7 @@ MonoBehaviour:
   text: {fileID: 7089567088960339435}
   textSpeed: 0.01
   packaageHandovered: 0
+  StopPlayingAudio: 1
 --- !u!224 &8691291950217419263
 RectTransform:
   m_ObjectHideFlags: 0

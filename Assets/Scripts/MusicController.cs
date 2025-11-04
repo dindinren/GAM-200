@@ -19,11 +19,9 @@ public class MusicController : MonoBehaviour
 
     public void Start()
     {
-        tempVolumeHolder = volume;
-        volume = 0.0000001f;
+        StartAudio();
 
-        bgmSource.clip = bgmClip;
-        bgmSource.Play();
+
         isPlaying = true;
 
     }
@@ -33,6 +31,15 @@ public class MusicController : MonoBehaviour
         StopMusic();
     }
 
+    void StartAudio()
+    {
+        tempVolumeHolder = volume;
+        volume = 0.0000001f;
+
+        bgmSource.clip = bgmClip;
+        bgmSource.Play();
+
+    }
     void AudioFade()
     {
         if (SceneChange.changed)
