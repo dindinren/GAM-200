@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MusicController : MonoBehaviour
 {
@@ -14,21 +15,26 @@ public class MusicController : MonoBehaviour
 
     private void Awake()
     {
+        SceneManager.activeSceneChanged += ChangedActiveScene;
         instance = this;
     }
+    private void ChangedActiveScene(Scene current, Scene next) //here cus the build does not sometimes play the music 
+    {
+        SceneChange.changed = false;
+        isPlaying = true;
+    }
+
 
     public void Start()
     {
         StartAudio();
-
-
-        isPlaying = true;
 
     }
     private void Update()
     {
         AudioFade();
         StopMusic();
+        //print(SceneManager.GetActiveScene().name + " SceneChange.changed " + SceneChange.changed + ", volume " + volume + ", tempVolumeHolder " + tempVolumeHolder + ", isPlaying " + isPlaying);
     }
 
     void StartAudio()

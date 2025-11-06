@@ -33,6 +33,11 @@ public class SceneChange_MainMenu : MonoBehaviour
         //changeScene = true;
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
     #region Transition
 
     IEnumerator LeftToRightTransit()

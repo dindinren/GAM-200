@@ -74,7 +74,7 @@ public class PackageManager : MonoBehaviour
                 break;
             case 1:
                 spriteRenderer.color = new Color(255f/255f, 169f/255f, 0f/255f); //why need to divide why unity i dun understand 
-                packageValue = packageValue /= 2;
+                packageValue = packageValue / 2;
 
                 break;
             case 0:

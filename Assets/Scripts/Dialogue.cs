@@ -1,10 +1,8 @@
-using UnityEngine;
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
-using UnityEngine.Rendering;
-using System.Runtime.CompilerServices;
-using UnityEditor.Searcher;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Dialogue : MonoBehaviour
 {
@@ -28,15 +26,18 @@ public class Dialogue : MonoBehaviour
 
     private void Awake()
     {
-
+        SceneManager.activeSceneChanged += ChangedActiveScene;
     }
-    private void Start()
+
+    private void ChangedActiveScene(Scene current, Scene next) //here cus the build does not sometimes play the music 
     {
         dialogueEnded = false;
         spawned = false;
-
         count = 0;
+    }
 
+    private void Start()
+    {
         //Set the dialogue box to not show first
         dialogueBox.SetActive(false);
         continueButton.SetActive(false);

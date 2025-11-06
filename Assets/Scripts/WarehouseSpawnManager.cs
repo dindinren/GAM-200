@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class WarehouseSpawnManager : MonoBehaviour
@@ -46,8 +47,13 @@ public class WarehouseSpawnManager : MonoBehaviour
             //Debug.Log("Awake: Button forcefully disabled");
         }
 
-    }
+        SceneManager.activeSceneChanged += ChangedActiveScene;
 
+    }
+    private void ChangedActiveScene(Scene current, Scene next) //here cus the build does not sometimes play the music 
+    {
+        playerReadyToGo = false;
+    }
     void Start()
     {
         // Ensure all packages start unselected
@@ -55,7 +61,6 @@ public class WarehouseSpawnManager : MonoBehaviour
         toSpawnPackages.Clear();
         selection.isOn = false;
 
-        playerReadyToGo = false;
 
 
         index = 0;

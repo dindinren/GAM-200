@@ -13,7 +13,7 @@ public class InvisibleWall : MonoBehaviour
         dialogueBox.SetActive(true);
         Dialogue dlog = dialogueBox.GetComponent<Dialogue>();
         dlog.DialogueAppear();
-        player.enabled = true;
+        player.enabled = false;
         Dialogue.count++;
     }
 

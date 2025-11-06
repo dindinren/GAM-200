@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 66cf7dde62da8fc45bcf62bfc3663ce9
   - enabled: 1
+    path: Assets/Scenes/TempStartingScene.unity
+    guid: 6b897c538594a8a4a978518ada5d57a0
+  - enabled: 1
     path: Assets/Scenes/WarehouseV2.unity
     guid: 991f8cbf5886bb44db3f62e7fe6febaa
   - enabled: 1
@@ -17,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TownArea.unity
     guid: c76622a4acbc8454e8d2ae3b3f062f4b
+  - enabled: 1
+    path: Assets/Scenes/TempNewDay.unity
+    guid: 3d3c980055af0864f84a23e22f0114c9
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

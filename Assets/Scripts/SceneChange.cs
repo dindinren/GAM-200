@@ -17,11 +17,18 @@ public class SceneChange : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         transition = GameObject.Find("CrossFade").GetComponent<Animator>();
         timeManager = GameObject.Find("Parcel_UI_1").GetComponent<TimeManager>();
+        SceneManager.activeSceneChanged += ChangedActiveScene;
     }
     private void Start()
     {
+        //changed = false;
+    }
+
+    private void ChangedActiveScene(Scene current, Scene next) //here cus the build does not sometimes play the music 
+    {
         changed = false;
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //TO ADD: player reaches the trigger area, make it so they cant move 

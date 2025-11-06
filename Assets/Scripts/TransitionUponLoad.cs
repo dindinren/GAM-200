@@ -31,6 +31,14 @@ public class TransitionUponLoad : MonoBehaviour
             case "TownArea":
                 transition.Play("CrossFade_RightToLeft_End");
                 break;
+
+            // TEMP TO DELETE ONCE EVERYTHING IS GOOD
+            case "TempStartingScene":
+                transition.Play("CrossFade_RightToLeft_End");
+                break;
+            case "TempNewDay":
+                transition.Play("CrossFade_RightToLeft_End");
+                break;
         }
     }
 }

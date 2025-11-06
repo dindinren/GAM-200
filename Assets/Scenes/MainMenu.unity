@@ -256,11 +256,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!82 &555199241 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 3348319561874721849, guid: c467b339e8ba5b5418a02c30c0ba9ed3, type: 3}
-  m_PrefabInstance: {fileID: 2048153634}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &572788515
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,9 +521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transition: {fileID: 1386154601}
-  bgmSource: {fileID: 555199241}
-  volume: 0
-  SceneName: WarehouseV2
+  SceneName: TempStartingScene
 --- !u!114 &855955167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1002,7 +995,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1799377230}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 855955166}
+        m_TargetAssemblyTypeName: SceneChange_MainMenu, Assembly-CSharp
+        m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1799377230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1131,7 +1136,7 @@ PrefabInstance:
     - target: {fileID: 1079768131428985311, guid: c467b339e8ba5b5418a02c30c0ba9ed3, type: 3}
       propertyPath: bgmClip
       value: 
-      objectReference: {fileID: 8300000, guid: 4fee7fb85e5d71f4bb3dd53a7eed47f5, type: 3}
+      objectReference: {fileID: 8300000, guid: 23b473ed5eb1daf46b0e49c1a0c3f52e, type: 3}
     - target: {fileID: 4024107425946321874, guid: c467b339e8ba5b5418a02c30c0ba9ed3, type: 3}
       propertyPath: m_Name
       value: SoundManager

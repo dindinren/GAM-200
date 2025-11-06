@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class PlayerPackageCheck : MonoBehaviour
@@ -25,12 +26,19 @@ public class PlayerPackageCheck : MonoBehaviour
         PackageMove = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PackageMove>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManagement>();
         packMov = GameObject.FindGameObjectWithTag("Paddle").GetComponentInChildren<PackageMove>();
+
+        //SceneManager.activeSceneChanged += ChangedActiveScene;
+
     }
+
+    //private void ChangedActiveScene(Scene current, Scene next) //here cus the build does not sometimes play the music 
+    //{
+    //    //Dialogue.count = 0;
+    //}
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Dialogue.count = 0;
-
         SceneChangeTriggerArea.SetActive(false);
         invisibleWall.SetActive(true);
     }
@@ -45,7 +53,6 @@ public class PlayerPackageCheck : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Checker();
 
         if (PackageMove.GetAttachedPackagesList().Count != WarehouseSpawnManager.requiredNumber)
         {
@@ -56,6 +63,9 @@ public class PlayerPackageCheck : MonoBehaviour
                 Dialogue.spawned = true;
             }
         }
+
+        Checker();
+
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
