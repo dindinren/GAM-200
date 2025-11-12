@@ -88,4 +88,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d16199223d00fa4fb479115da6e9321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  journal: {fileID: 4174700567757544380, guid: 61ec3d85505d87547a142adc2a968986, type: 3}
+  journal: {fileID: 0}

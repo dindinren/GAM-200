@@ -47,7 +47,7 @@ public class PauseJournalScript : MonoBehaviour
             key_is_pressed = false;
         }
 
-        if (key_is_pressed && !isPause)
+        if (key_is_pressed /*&& !isPause*/)
         {
             Pause();
         }

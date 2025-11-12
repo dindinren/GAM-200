@@ -119,19 +119,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4918599165380123640}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4617606254336274844, guid: 9aed7fc3cd0842a46935a54c546bebfa, type: 3}
-        m_TargetAssemblyTypeName: PauseJournalScript, Assembly-CSharp
-        m_MethodName: Resume
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &2619520236684946272
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,19 +239,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4269328209407761735}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4617606254336274844, guid: 9aed7fc3cd0842a46935a54c546bebfa, type: 3}
-        m_TargetAssemblyTypeName: PauseJournalScript, Assembly-CSharp
-        m_MethodName: MainMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &4174700567757544380
 GameObject:
   m_ObjectHideFlags: 0
