@@ -16,7 +16,7 @@ public class SceneChange : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         transition = GameObject.Find("CrossFade").GetComponent<Animator>();
-        timeManager = GameObject.Find("Parcel_UI_1").GetComponent<TimeManager>();
+        timeManager = GameObject.Find("Parcel_UI").GetComponent<TimeManager>();
         SceneManager.activeSceneChanged += ChangedActiveScene;
     }
     private void Start()

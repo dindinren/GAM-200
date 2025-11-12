@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 4065072543659741828}
   - component: {fileID: 7792115764801693031}
   m_Layer: 5
-  m_Name: Parcel_UI_1
+  m_Name: Parcel_UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
