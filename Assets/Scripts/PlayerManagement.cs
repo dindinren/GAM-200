@@ -95,13 +95,14 @@ public class PlayerManagement : MonoBehaviour
                 rb.AddForce(new Vector3(rb.linearVelocityY, jumpForce));
 
                 //Debug.Log($"packages carried are: {pack}");
-                if (pack.gameObject.tag == "Package")
-                {
-                    Rigidbody2D rb2 = pack.GetComponent<Rigidbody2D>();
-                    rb2.AddForceX(50, ForceMode2D.Force);
-                    rb2.AddForceY(10, ForceMode2D.Force);
-                    Debug.Log("ADDED FORCE TO PACKAGE!!!!!!");
-                }
+
+                //if (pack.gameObject.tag == "Package")
+                //{
+                //    Rigidbody2D rb2 = pack.GetComponent<Rigidbody2D>();
+                //    rb2.AddForceX(50, ForceMode2D.Force);
+                //    rb2.AddForceY(100, ForceMode2D.Force);
+                //    Debug.Log("ADDED FORCE TO PACKAGE!!!!!!");
+                //}
             }
 
             touchingFloor = false;

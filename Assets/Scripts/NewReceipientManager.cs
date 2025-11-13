@@ -140,7 +140,10 @@ public class NewReceipientManager : MonoBehaviour
                 //add player money
                 int moneyGot = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PackageManager>().GetPackageValue();
                 playManage.SetMoneySatus(moneyGot);
-                
+
+                //decrease weight
+                //UIPanel1Manager.currentWeight -= package.GetComponent<PackageManager>().weight;
+
                 Debug.Log($"PLAYER GOT ${moneyGot}");
                 //Debug.Log($"DESTROYED PACKAGE {package.GetComponent<PackageManager>().packageID} for RECEIPIENT {receipientID}");
                 break;

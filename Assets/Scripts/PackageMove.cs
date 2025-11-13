@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.Rendering.ReloadAttribute;
 public class PackageMove : MonoBehaviour
 {
     public GameObject packageParent;
     private List<GameObject> attachedPackages = new List<GameObject>();
 
-    public GameObject receipient; //temp  
+    //public GameObject receipient; //temp  
 
     float distPackageMove = 5;
     
@@ -20,8 +21,6 @@ public class PackageMove : MonoBehaviour
     // Track if we're in a valid state to modify parent relationships
     private bool canModifyParents = true;
 
-
-
     private void Awake()
     {
         // Ensure we have a package parent reference
@@ -30,21 +29,20 @@ public class PackageMove : MonoBehaviour
             Debug.LogWarning("PackageParent is not assigned in the inspector. Using this GameObject as parent.");
             packageParent = gameObject;
         }
-
     }
-
     private void Start()
     {
-        if (receipient)
-        {
-            receipient.SetActive(false);
-        }
+        //if (receipient)
+        //{
+        //    receipient.SetActive(false);
+        //}
     }
     private void OnEnable()
     {
         // Only allow parent modifications in play mode
         canModifyParents = Application.isPlaying;
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -61,20 +59,23 @@ public class PackageMove : MonoBehaviour
 
                 attachedPackages.Add(package);
 
+                UIPanel1Manager.currentWeight += package.GetComponent<PackageManager>().weight;
+
                 //set the pacakge to ignore raycast
                 package.layer = LayerMask.NameToLayer("Ignore Raycast");
                 //stop from deforming                
                 package.transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0);
             }
 
-            //allow player to talk to the receipient
-            if (receipient)
-            {
-                receipient.SetActive(true);
-            }
+            ////allow player to talk to the receipient
+            //if (receipient)
+            //{
+            //    receipient.SetActive(true);
+            //}
         }
     }
 
+    #region Tilting
     public void TiltMove()
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
@@ -136,9 +137,9 @@ public class PackageMove : MonoBehaviour
         tiltRotation = packageParent.transform.rotation.z;
         isReturningToZero = true;
     }
+    #endregion
 
 
-    
     public List<GameObject> GetAttachedPackagesList()
     {
         return attachedPackages;
@@ -159,10 +160,10 @@ public class PackageMove : MonoBehaviour
             {
                 package.transform.SetParent(null);
                 attachedPackages.Remove(package);
+                UIPanel1Manager.currentWeight -= package.GetComponent<PackageManager>().weight;
                 //package.GetComponent<Rigidbody2D>().simulated = true;
-
                 //add force to the package?
-                
+
             }
 
         }
@@ -174,7 +175,6 @@ public class PackageMove : MonoBehaviour
     {
         TiltMove();
         if (!canModifyParents) return;
-
         attachedPackages.RemoveAll(package => package == null);
 
     }

@@ -8,7 +8,7 @@ public class PackageManager : MonoBehaviour
     public string receipientName;
     public string location;
     public string description;
-    public float weight;
+    public int weight;
     public int packageHP = 2; //how many times a package can handle damage
     public int packageValue; //Money value of package
     public GameObject packagePrefab; //Image of package
@@ -32,7 +32,7 @@ public class PackageManager : MonoBehaviour
 
     private void Start()
     {
-        weight = gameObject.GetComponent<Rigidbody2D>().mass;
+        //weight = gameObject.GetComponent<Rigidbody2D>().mass;
     }
     void Update()
     {

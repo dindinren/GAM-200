@@ -54,7 +54,7 @@ public class PlayerPackageCheck : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (PackageMove.GetAttachedPackagesList().Count != WarehouseSpawnManager.requiredNumber)
+        if (PackageMove.GetAttachedPackagesList().Count < WarehouseSpawnManager.requiredNumber)
         {
             if (collision.gameObject.tag == "Player" && Dialogue.count == 0)
             {
@@ -75,7 +75,7 @@ public class PlayerPackageCheck : MonoBehaviour
     }
     public void Checker()
     {
-        if (PackageMove.GetAttachedPackagesList().Count == WarehouseSpawnManager.requiredNumber)
+        if (PackageMove.GetAttachedPackagesList().Count >= WarehouseSpawnManager.requiredNumber)
         {
             SceneChangeTriggerArea.SetActive(true);
             invisibleWall.SetActive(false);

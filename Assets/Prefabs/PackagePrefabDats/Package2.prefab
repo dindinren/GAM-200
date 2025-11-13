@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 14
-  m_Sprite: {fileID: 21300000, guid: bb23e1a913c8b834cadc46e38705784b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5846df90c0e29bb4a97c832fcd96ce48, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -152,9 +152,9 @@ MonoBehaviour:
   receipientName: Emily
   location: Bristle Town
   description: Skibidi toilet sigma ohio 67
-  weight: 0
+  weight: 1
   packageHP: 2
-  packageValue: 15
+  packageValue: 20
   packagePrefab: {fileID: 4281921508654602074}
   isSelected: 0
 --- !u!50 &-6592652394644253812

@@ -14,6 +14,9 @@ public class WarehouseSpawnManager : MonoBehaviour
     public Button proceedButton;
     public Toggle selection;
 
+    public GameObject nextButton;
+    public GameObject previousButton;
+
     [Header("POSITION")]
     public Transform packageSpawnPoint;
 
@@ -88,7 +91,9 @@ public class WarehouseSpawnManager : MonoBehaviour
     void Update()
     {
         ConditionToUnlockProceed();
+        NextPrevButtonDisplay();
         //Debug.Log($"toSpawn Count: {toSpawnPackages.Count}, Required: {requiredNumber}, Button Active: {proceedButton.gameObject.activeSelf}");
+
     }
 
     void SetPackagesData()
@@ -190,13 +195,32 @@ public class WarehouseSpawnManager : MonoBehaviour
 
     public void ConditionToUnlockProceed()
     {
-        if(toSpawnPackages.Count == requiredNumber)
+        if(toSpawnPackages.Count >= requiredNumber)
         {
             proceedButton.gameObject.SetActive(true);
         }
         else
         {
             proceedButton.gameObject.SetActive(false);
+        }
+    }
+
+    public void NextPrevButtonDisplay()
+    {
+        if(index == 0)
+        {
+            previousButton.gameObject.SetActive(false);
+            nextButton.gameObject.SetActive(true);
+        }
+        else if(index == packages.Count-1)
+        {
+            previousButton.gameObject.SetActive(true);
+            nextButton.gameObject.SetActive(false);
+        }
+        else
+        {
+            previousButton.gameObject.SetActive(true);
+            nextButton.gameObject.SetActive(true);
         }
     }
 
