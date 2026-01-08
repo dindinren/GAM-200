@@ -54,7 +54,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b407a829f214cc4a9f37c36a10f0930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueBox_player: {fileID: 0}
+  dialogueBox_NPC: {fileID: 0}
   dialogueBox: {fileID: 7575347277572918904}
+  continueButton: {fileID: 0}
   lines:
   - Ohhh.... I wonder where is my package....
   - Ohh! A new face! Welcome to our humble little town!
@@ -73,6 +76,7 @@ MonoBehaviour:
   text: {fileID: 2159221062225197074}
   textSpeed: 0.01
   packaageHandovered: 0
+  StopPlayingAudio: 0
 --- !u!1 &1903216249739830039
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,7 +639,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b407a829f214cc4a9f37c36a10f0930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueBox_player: {fileID: 0}
+  dialogueBox_NPC: {fileID: 0}
   dialogueBox: {fileID: 4556364582132582986}
+  continueButton: {fileID: 0}
   lines:
   - Ohhh.... I wonder where is my package....
   - Ohh! A new face! Welcome to our humble little town!
@@ -654,6 +661,7 @@ MonoBehaviour:
   text: {fileID: 0}
   textSpeed: 0.01
   packaageHandovered: 0
+  StopPlayingAudio: 0
 --- !u!1 &4607747870832997930
 GameObject:
   m_ObjectHideFlags: 0

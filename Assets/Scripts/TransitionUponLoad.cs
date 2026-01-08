@@ -7,7 +7,7 @@ public class TransitionUponLoad : MonoBehaviour
     private void Awake()
     {
         transition = GetComponent<Animator>();
-        if(SceneManager.GetActiveScene().name == "MainMenu")
+        if(SceneManager.GetActiveScene().name == "MainMenu" || SceneManager.GetActiveScene().name == "OpeningCutScene")
         {
             transition.Play("CrossFade_Default2");
         }
@@ -28,9 +28,15 @@ public class TransitionUponLoad : MonoBehaviour
             case "WarehouseV2":
                 transition.Play("CrossFade_RightToLeft_End");
                 break;
+            case "WarehouseV2_Tutorial":
+                transition.Play("CrossFade_RightToLeft_End");
+                break;
             case "TownArea":
                 transition.Play("CrossFade_RightToLeft_End");
                 break;
+            //case "OpeningCutScene":
+            //    transition.Play("CrossFade_RightToLeft_End");
+            //    break;
 
             // TEMP TO DELETE ONCE EVERYTHING IS GOOD
             case "TempStartingScene":

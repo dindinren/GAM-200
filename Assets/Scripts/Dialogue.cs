@@ -20,6 +20,8 @@ public class Dialogue : MonoBehaviour
     public static int count;
 
     public static bool dialogueEnded;
+
+
     public static bool spawned;
     bool key_Is_Pressed;
     int keyPresses;
